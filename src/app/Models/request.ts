@@ -1,15 +1,12 @@
-export class Request {
+// export interface Request{
+//   request_number?: number;
+//   request_date?: string;
+//   subject?: string;
+//   address?: string;
+//   pass_id?: string;
+//   notes?: string;
+//   request_status?: string;
+//   tasdek_status?: string;
+//   tasdek_detail?: string;
+// }
 
-    id?: number;
-    firstName: string;
-    age: number;
-    job: string;
-  
-    constructor(id: number, 
-                firstName: string = '', age: number = 0, job: string = '') {
-      this.id = id;
-      this.firstName = firstName;
-      this.age = age;
-      this.job = job;
-    }
-  }

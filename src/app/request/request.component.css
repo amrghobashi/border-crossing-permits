@@ -3,5 +3,14 @@ table {
 }
 
 th {
-    font-size: large;
+    font-size: 20px;
+    text-align: center !important;
+    font-weight: bold;
+    color: black;
+}
+
+td {
+    font-size: 18px;
+    padding: 5px !important;
+    text-align: center !important;
 }

@@ -1,32 +1,63 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort, SortDirection} from '@angular/material/sort';
+import {merge, Observable, of as observableOf} from 'rxjs';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+// import { Request } from '../Models/request';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface Request{
+  request_number?: number;
+  request_date?: string;
+  subject?: string;
+  address?: string;
+  pass_id?: string;
+  notes?: string;
+  request_status?: string;
+  tasdek_status?: string;
+  tasdek_detail?: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+const ELEMENT_DATA: Request[] = [
+  {request_number: 1000,
+   request_date: '2021/11/14',
+   subject: 'نقل خامات تحويل السيارات للعمل بالغاز الطبيعى وعدد يدوية وأثاث مكتبى وجهاز كمبيوتر كامل بالاستاند الحديد',
+   address: ' محطة الغاز الطبيعى للسيارات التابعة لشركة ( كار جاس ) والكائنة بشارع اسيوط بجوار قسم ثالث العريش',
+   pass_id: 'معدية شرق التفريعة غرب',
+   notes: '65',
+   request_status: 'تحت التنفيذ',
+   tasdek_status: 'تحت التنفيذ',
+   tasdek_detail: 's'
+  },
+  {request_number: 1001, request_date: '2021/11/14',
+   subject: 'نقل خامات تحويل السيارات للعمل بالغاز الطبيعى وعدد يدوية وأثاث مكتبى وجهاز كمبيوتر كامل بالاستاند الحديد',
+   address: ' محطة الغاز الطبيعى للسيارات التابعة لشركة ( كار جاس ) والكائنة بشارع اسيوط بجوار قسم ثالث العريش',
+   pass_id: 'معدية شرق التفريعة غرب', notes: '65', request_status: 'تحت التنفيذ',
+   tasdek_status: 'تحت التنفيذ', tasdek_detail: 's'
+  },
+  {request_number: 1002, request_date: '2021/11/14',
+   subject: 'نقل خامات تحويل السيارات للعمل بالغاز الطبيعى وعدد يدوية وأثاث مكتبى وجهاز كمبيوتر كامل بالاستاند الحديد',
+   address: ' محطة الغاز الطبيعى للسيارات التابعة لشركة ( كار جاس ) والكائنة بشارع اسيوط بجوار قسم ثالث العريش',
+   pass_id: 'معدية شرق التفريعة غرب', notes: '65', request_status: 'تحت التنفيذ',
+   tasdek_status: 'تحت التنفيذ', tasdek_detail: 'Amr Aly Ghobashi'
+  },
 ];
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css']
 })
-export class RequestComponent {
+export class RequestComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  requests: Request[] = [];
+
+  constructor() {}
+
+  ngOnInit() {
+    
+  }
+  displayedColumns: string[] = ['request_number', 'request_date', 'subject', 'address', 'pass_id', 'notes', 'request_status', 'tasdek_status', 'tasdek_detail'];
   dataSource = ELEMENT_DATA;
+  // fetchRequests() {
+  //   this.requestService.getRequests().then(data => this.requests = data)
+  // }
 }
