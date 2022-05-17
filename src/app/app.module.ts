@@ -5,15 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RequestComponent } from './request/request.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatNativeDateModule} from '@angular/material/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table'
-import {MatCardModule} from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { ToolBarComponent } from './shared/tool-bar/tool-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RequestComponent
+    RequestComponent,
+    ToolBarComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +29,11 @@ import {MatCardModule} from '@angular/material/card';
     FormsModule,
     MatNativeDateModule,
     MatTableModule,
-    MatCardModule
+    MatCardModule,
+    MatToolbarModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
