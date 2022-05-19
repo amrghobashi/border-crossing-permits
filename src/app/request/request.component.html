@@ -1,5 +1,6 @@
 <mat-card style="margin: 40px; background-color: #f3f3f3; border-radius: 20px;">
     <mat-card-title style="text-align: center; font-size: 40px; font-weight: bold; margin: 20px;">الطلبات</mat-card-title>
+    <button mat-raised-button color="primary" (click)="addRequest()">Primary</button>
     <!-- <mat-card-header style="text-align: center; font-size: 40px; font-weight: bold; margin: 20px;">الطلبات</mat-card-header> -->
     <table dir="rtl" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -53,4 +54,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+    <!-- <p>{{ test }}</p> -->
 </mat-card>
