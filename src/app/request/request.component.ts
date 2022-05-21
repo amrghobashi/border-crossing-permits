@@ -1,16 +1,24 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RequestService } from './request.service';
 import { Request } from '../Models/request';
 import { Subscription } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css']
 })
-export class RequestComponent implements OnInit, OnDestroy {
+export class RequestComponent implements OnInit, OnDestroy, AfterViewInit {
 
   requests: Request[] = [];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+  
   newReq: Request = 
     {
       "id": 4,
@@ -30,14 +38,16 @@ export class RequestComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.supscription = this.requestService.getRequests().subscribe((requests) => {
-      console.log(requests);
+      // console.log(requests);
       this.requests = JSON.parse(JSON.stringify(requests));
-      this.dataSource = this.requests;
+      this.dataSource.data = this.requests;
     })
   }
 
   displayedColumns: string[] = ['request_number', 'request_date', 'subject', 'address', 'pass_id', 'notes', 'request_status', 'tasdek_status', 'tasdek_detail'];
-  dataSource: Request[] = [];
+  // dataSource: Request[] = [];
+  dataSource = new MatTableDataSource<Request>();
+  
 
   addRequest() {
     this.requestService.addRequest(this.newReq).subscribe(req => {
