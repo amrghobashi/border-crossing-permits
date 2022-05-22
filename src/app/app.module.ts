@@ -15,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { ToolBarComponent } from './shared/tool-bar/tool-bar.component';
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ToolBarComponent } from './shared/tool-bar/tool-bar.component';
     MatButtonModule,
     MatIconModule,
     HttpClientModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

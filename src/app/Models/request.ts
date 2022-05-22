@@ -6,6 +6,7 @@ export interface Request{
   address?: string;
   pass_id?: string;
   notes?: string;
+  request_status_id?: number;
   request_status?: string;
   tasdek_status?: string;
   tasdek_detail?: string;
