@@ -1,0 +1,27 @@
+<mat-card style="margin: 40px; background-color: #f3f3f3; border-radius: 20px;">
+    <mat-tab-group dir="rtl" dynamicHeight>
+        <mat-tab label="Short tab">
+          <div class="col-md-6" cols="6"  *ngFor="let request of requests">
+              <!-- <br> -->
+            <mat-card dir="rtl" class="example-card" style="margin: 12px; border-radius: 8px;">
+                <mat-card-title>طلب رقم : {{ request.request_number }}</mat-card-title>
+                <mat-card-subtitle>{{ request.request_status }}</mat-card-subtitle>
+                <mat-card-content>
+                  <p>الموضوع : {{ request.subject }}</p>
+                  <p>sssssssssssssss</p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-button>التفاصيل...</button>
+                </mat-card-actions>
+            </mat-card>
+              <!-- <br> -->
+          </div>
+        </mat-tab>
+        <mat-tab label="Long tab">
+          <div class="example-large-box mat-elevation-z4">
+            
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+</mat-card>
+

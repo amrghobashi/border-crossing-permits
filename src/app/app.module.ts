@@ -16,13 +16,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { ToolBarComponent } from './shared/tool-bar/tool-bar.component';
+import { CompletedRequestComponent } from './completed-request/completed-request.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RequestComponent,
-    ToolBarComponent
+    ToolBarComponent,
+    CompletedRequestComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,9 @@ import { ToolBarComponent } from './shared/tool-bar/tool-bar.component';
     MatIconModule,
     HttpClientModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatTabsModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
