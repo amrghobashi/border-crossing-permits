@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CompletedRequestService } from './completed-request.service';
-import { Request } from '../Models/request';
+import { Request } from '../../Models/request';
 import { Subscription } from 'rxjs';
 
 @Component({

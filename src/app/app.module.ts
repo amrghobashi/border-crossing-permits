@@ -19,15 +19,23 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatInputModule } from '@angular/material/input';
 import { ToolBarComponent } from './shared/tool-bar/tool-bar.component';
-import { CompletedRequestComponent } from './completed-request/completed-request.component';
+import { CompletedRequestComponent } from './request/completed-request/completed-request.component';
+import { NewRequestComponent } from './request/new-request/new-request.component';
+import { PendingRequestComponent } from './request/pending-request/pending-request.component';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
     AppComponent,
     RequestComponent,
     ToolBarComponent,
-    CompletedRequestComponent
+    CompletedRequestComponent,
+    NewRequestComponent,
+    PendingRequestComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +43,7 @@ import { CompletedRequestComponent } from './completed-request/completed-request
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatNativeDateModule,
     MatTableModule,
     MatCardModule,
@@ -47,8 +56,13 @@ import { CompletedRequestComponent } from './completed-request/completed-request
     MatSortModule,
     MatTabsModule,
     MatGridListModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatStepperModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })
