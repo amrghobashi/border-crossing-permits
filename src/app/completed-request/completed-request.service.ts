@@ -12,7 +12,7 @@ export class CompletedRequestService {
   constructor(private http: HttpClient) { }
 
   getRequests() {
-    return this.http.get<Request[]>('http://localhost:3000/data');
+    return this.http.get<Request[]>('http://localhost:3000/closed_requests');
   }
 
 }
