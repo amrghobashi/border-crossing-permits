@@ -1,27 +1,34 @@
 <mat-card style="margin: 40px; background-color: #f3f3f3; border-radius: 20px;">
-    <mat-tab-group dir="rtl" dynamicHeight>
-        <mat-tab label="Short tab">
-          <div class="col-md-6" cols="6"  *ngFor="let request of requests">
-              <!-- <br> -->
-            <mat-card dir="rtl" class="example-card" style="margin: 12px; border-radius: 8px;">
-                <mat-card-title>طلب رقم : {{ request.request_number }}</mat-card-title>
-                <mat-card-subtitle>{{ request.request_status }}</mat-card-subtitle>
-                <mat-card-content>
-                  <p>الموضوع : {{ request.subject }}</p>
-                  <p>sssssssssssssss</p>
-                </mat-card-content>
-                <mat-card-actions>
-                  <button mat-button>التفاصيل...</button>
-                </mat-card-actions>
-            </mat-card>
-              <!-- <br> -->
-          </div>
+    <mat-tab-group dir="rtl" dynamicHeight style="font-size: large;">
+        <mat-tab label=" الطلبات" class="mat-tab-label">
+            <br>
+            <mat-grid-list cols="2" rowHeight="300px">
+                <mat-grid-tile *ngFor="let request of requests">
+                    <mat-card dir="rtl" class="example-card" style="margin: 12px; border-radius: 8px; width: 100%; height: 85%;">
+                        <mat-card-title>طلب رقم : {{ request.request_number }}</mat-card-title>
+                        <mat-card-subtitle style="margin-top: 3%; font-size: large;">{{ request.pass_id }}</mat-card-subtitle>
+                        <mat-card-content>
+                            <p style="font-size: large;">الموضوع : {{ request.subject }}</p>
+                            <p style="font-size: large;">بتاريخ : {{ request.request_date }}</p>
+                            <a *ngIf="request.request_status_id === 1 && request.tasdek_status_id === 0;" style="background-color: rgb(22, 121, 167); padding: 5px; border-radius: 5px; color: white; font-size: large;"> {{request.request_status}} </a>
+                            <a *ngIf="request.request_status_id === 2 && request.tasdek_status_id === 0;" style="background-color: rgb(183, 199, 43); padding: 5px; border-radius: 5px; color: white; font-size: large;"> {{request.request_status}} </a>
+                            <a *ngIf="request.tasdek_status_id === 1;" style="background-color: rgb(69, 218, 55); padding: 5px; border-radius: 5px; color: white; font-size: large;"> {{request.tasdek_status}} </a>
+                            <a *ngIf="request.tasdek_status_id === 2;" style="background-color: rgb(218, 90, 16); padding: 5px; border-radius: 5px; color: white; font-size: large;"> {{request.tasdek_status}} </a>
+                        </mat-card-content>
+                        <!-- <mat-card-actions>
+                            <button mat-button>التفاصيل...</button>
+                        </mat-card-actions> -->
+                        <mat-card-footer>
+                            <button mat-button>التفاصيل...</button>
+                        </mat-card-footer>
+                    </mat-card>
+                </mat-grid-tile>
+            </mat-grid-list>
         </mat-tab>
         <mat-tab label="Long tab">
-          <div class="example-large-box mat-elevation-z4">
-            
-          </div>
-        </mat-tab>
-      </mat-tab-group>
-</mat-card>
+            <div class="example-large-box mat-elevation-z4">
 
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>

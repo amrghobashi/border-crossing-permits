@@ -32,8 +32,7 @@ export class RequestComponent implements OnInit, OnDestroy, AfterViewInit {
       "pass_id": "معدية شرق التفريعة غرب",
       "notes": "65",
       "request_status": "تحت التنفيذ",
-      "tasdek_status": "24",
-      "tasdek_detail": "تحت التنفيذ"
+      "tasdek_status": "24"
   };
   test: any;
   supscription: Subscription = new Subscription;
@@ -47,7 +46,7 @@ export class RequestComponent implements OnInit, OnDestroy, AfterViewInit {
     })
   }
 
-  displayedColumns: string[] = ['request_number', 'request_date', 'subject', 'address', 'pass_id', 'notes', 'request_status', 'tasdek_status', 'tasdek_detail'];
+  displayedColumns: string[] = ['request_number', 'request_date', 'subject', 'address', 'pass_id', 'notes', 'request_status', 'tasdek_status'];
   // dataSource: Request[] = [];
   dataSource = new MatTableDataSource<Request>();
   

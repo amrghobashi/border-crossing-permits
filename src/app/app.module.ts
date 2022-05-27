@@ -18,6 +18,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ToolBarComponent } from './shared/tool-bar/tool-bar.component';
 import { CompletedRequestComponent } from './completed-request/completed-request.component';
 
@@ -45,7 +46,8 @@ import { CompletedRequestComponent } from './completed-request/completed-request
     MatPaginatorModule,
     MatSortModule,
     MatTabsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

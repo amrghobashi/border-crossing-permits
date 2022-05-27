@@ -8,7 +8,7 @@ export interface Request{
   notes?: string;
   request_status_id?: number;
   request_status?: string;
+  tasdek_status_id?: number;
   tasdek_status?: string;
-  tasdek_detail?: string;
 }
 

@@ -3,14 +3,14 @@
             "id": 1,
             "request_number": "1000",
             "request_date": "2021/08/09",
-            "subject": "نقل خامات تحويل السيارات للعمل بالغاز الطبيعى وعدد يدوية وأثاث مكتبى وجهاز كمبيوتر كامل بالاستاند الحديد",
+            "subject": "نقل خامات تحويل السيارات للعمل بالغاز الطبيعى وعدد يدوية وأثاث مكتبى وجهاز كمبيوتر كامل بالاستاند الحديد نقل خامات تحويل السيارات للعمل بالغاز الطبيعى وعدد يدوية وأثاث مكتبى وجهاز كمبيوتر كامل بالاستاند الحدي",
             "address": " محطة الغاز الطبيعى للسيارات التابعة لشركة ( كار جاس ) والكائنة بشارع اسيوط بجوار قسم ثالث العريش",
             "pass_id": "معدية شرق التفريعة غرب",
             "notes": 65,
             "request_status_id": 1,
-            "request_status": "تحت التنفيذ",
-            "tasdek_status": 24,
-            "tasdek_detail": "تحت التنفيذ"
+            "request_status": "تم الإرسال ",
+            "tasdek_status_id": 0,
+            "tasdek_status": "تحت التنفيذ"
         },
         {
             "id": 2,
@@ -22,8 +22,8 @@
             "notes": 65,
             "request_status_id": 2,
             "request_status": "تحت التنفيذ",
-            "tasdek_status": 24,
-            "tasdek_detail": "تحت التنفيذ"
+            "tasdek_status_id": 0,
+            "tasdek_status": "تحت التنفيذ"
         },
         {
             "id": 3,
@@ -35,8 +35,8 @@
             "notes": 65,
             "request_status_id": 2,
             "request_status": "تحت التنفيذ",
-            "tasdek_status": 24,
-            "tasdek_detail": "تحت التنفيذ"
+            "tasdek_status_id": 1,
+            "tasdek_status": "موافق "
         },
         {
             "id": 4,
@@ -46,10 +46,10 @@
             "address": " محطة الغاز الطبيعى للسيارات التابعة لشركة ( كار جاس ) والكائنة بشارع اسيوط بجوار قسم ثالث العريش",
             "pass_id": "معدية شرق التفريعة غرب",
             "notes": "65",
-            "request_status_id": 3,
+            "request_status_id": 2,
             "request_status": "تحت التنفيذ",
-            "tasdek_status": "24",
-            "tasdek_detail": "تحت التنفيذ"
+            "tasdek_status_id": 1,
+            "tasdek_status": "موافق "
         },
         {
             "id": 5,
@@ -60,9 +60,9 @@
             "pass_id": "معدية شرق التفريعة غرب",
             "notes": "65",
             "request_status_id": 1,
-            "request_status": "تحت التنفيذ",
-            "tasdek_status": "24",
-            "tasdek_detail": "تحت التنفيذ"
+            "request_status": "تم الإرسال ",
+            "tasdek_status_id": 0,
+            "tasdek_status": "تحت التنفيذ"
         },
         {
             "id": 6,
@@ -73,9 +73,9 @@
             "pass_id": "معدية شرق التفريعة غرب",
             "notes": "65",
             "request_status_id": 1,
-            "request_status": "تحت التنفيذ",
-            "tasdek_status": "24",
-            "tasdek_detail": "تحت التنفيذ"
+            "request_status": "تم الإرسال ",
+            "tasdek_status_id": 0,
+            "tasdek_status": "تحت التنفيذ"
         },
         {
             "id": 7,
@@ -85,10 +85,10 @@
             "address": " محطة الغاز الطبيعى للسيارات التابعة لشركة ( كار جاس ) والكائنة بشارع اسيوط بجوار قسم ثالث العريش",
             "pass_id": "معدية شرق التفريعة غرب",
             "notes": "65",
-            "request_status_id": 1,
+            "request_status_id": 2,
             "request_status": "تحت التنفيذ",
-            "tasdek_status": "24",
-            "tasdek_detail": "تحت التنفيذ"
+            "tasdek_status_id": 2,
+            "tasdek_status": "غير موافق "
         }
     ]
 }
