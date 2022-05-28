@@ -6,21 +6,19 @@
             <mat-card-content>
                 <p style="font-size: 1rem;"> {{ request.subject }}</p>
                 <p style="font-size: 1.1rem; font-weight: 500;">بتاريخ : {{ request.request_date }}</p>
-                <a *ngIf="request.tasdek_status_id === 1;"
-                    style="background-color: #6dbd28; padding: 5px; border-radius: 5px; color: white; font-size: 1rem;">
+                <a *ngIf="request.tasdek_status_id === 1;" style="background-color: #6dbd28; padding: 5px; border-radius: 5px; color: white; font-size: 1rem;">
                     {{request.tasdek_status}} </a>
-                <a *ngIf="request.tasdek_status_id === 2;"
-                    style="background-color: #b01818bf; padding: 5px; border-radius: 5px; color: white; font-size: 1rem;">
+                <a *ngIf="request.tasdek_status_id === 2;" style="background-color: #b01818bf; padding: 5px; border-radius: 5px; color: white; font-size: 1rem;">
                     {{request.tasdek_status}} 
                     <!-- <mat-icon>sentiment_very_dissatisfied</mat-icon> -->
                 </a>
-                    
+
             </mat-card-content>
             <!-- <mat-card-actions>
                 <button mat-button>التفاصيل...</button>
             </mat-card-actions> -->
             <mat-card-footer dir="ltr">
-                <button mat-button >...التفاصيل</button>
+                <button mat-button>...التفاصيل</button>
             </mat-card-footer>
         </mat-card>
     </mat-grid-tile>

@@ -16,13 +16,13 @@ export class CompletedRequestComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.supscription = this.completedRequestService.getRequests().subscribe((requests) => {
-      console.log(requests);
+      // console.log(requests);
       this.requests = JSON.parse(JSON.stringify(requests));
       // this.requests = requests;
     })
   }
 
   ngOnDestroy(): void {
-    
+    this.supscription.unsubscribe();
   }
 }
