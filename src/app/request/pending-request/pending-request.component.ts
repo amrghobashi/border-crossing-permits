@@ -17,13 +17,11 @@ export class PendingRequestComponent implements OnInit, OnDestroy, AfterViewInit
   secondFormGroup!: FormGroup;
   isEditable = false;
   supscription: Subscription = new Subscription;
-  // @ViewChild('stepper', { static: false }) stepper: MatStepper;
+  currentState!: number;
 
   constructor(private _formBuilder: FormBuilder, private pendingRequestService: PendingRequestService) {}
 
-  ngAfterViewInit(): void {
-    // this.stepper.selectedIndex = 2;
-  }
+  ngAfterViewInit(): void {}
 
   ngOnInit() {
     this.fetchRequest();
@@ -37,9 +35,8 @@ export class PendingRequestComponent implements OnInit, OnDestroy, AfterViewInit
 
   fetchRequest() {
     this.supscription = this.pendingRequestService.getRequests().subscribe((requests) => {
-      console.log(requests);
       this.requests = JSON.parse(JSON.stringify(requests));
-      // this.requests = requests;
+      console.log(requests);
     })
   }
 

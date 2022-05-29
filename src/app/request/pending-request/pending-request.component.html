@@ -7,16 +7,21 @@
                 <p style="font-size: 1rem;"> {{ request.subject }}</p>
                 <p style="font-size: 1.1rem; font-weight: 500;">بتاريخ : {{ request.request_date }}</p>
 
-                <mat-stepper linear #stepper>
-                    <mat-step [stepControl]="firstFormGroup" [editable]="false" selected="false">
+                <mat-stepper linear [selectedIndex]='request.request_status_id' #stepper>
+                    <mat-step [stepControl]="firstFormGroup" [editable]="false">
                         <ng-template matStepLabel>تم الإرسال</ng-template>
                     </mat-step>
-                    <mat-step [stepControl]="secondFormGroup" [editable]="false" selected="true">
+                    <mat-step [stepControl]="secondFormGroup" [editable]="false">
                         <ng-template matStepLabel>تحت التنفيذ</ng-template>
                     </mat-step>
                     <mat-step>
                         <ng-template matStepLabel>تم الرد</ng-template>
                     </mat-step>
+
+                    <!-- <ng-template *ngIf="request.request_status_id === 1" matStepperIcon="number" >
+                      <mat-icon>forum</mat-icon>
+                    </ng-template> -->
+
                 </mat-stepper>
 
             </mat-card-content>
