@@ -75,7 +75,7 @@
             "address": " محطة الغاز الطبيعى للسيارات التابعة لشركة ( كار جاس ) والكائنة بشارع اسيوط بجوار قسم ثالث العريش",
             "pass_id": "معدية شرق التفريعة غرب",
             "notes": 65,
-            "request_status_id": 1,
+            "request_status_id": 0,
             "request_status": "تم الإرسال",
             "tasdek_status_id": null,
             "tasdek_status": ""
@@ -88,7 +88,7 @@
             "address": " محطة الغاز الطبيعى للسيارات التابعة لشركة ( كار جاس ) والكائنة بشارع اسيوط بجوار قسم ثالث العريش",
             "pass_id": "معدية شرق التفريعة غرب",
             "notes": 65,
-            "request_status_id": 2,
+            "request_status_id": 1,
             "request_status": "تحت التنفيذ",
             "tasdek_status_id": null,
             "tasdek_status": ""
@@ -101,7 +101,7 @@
             "address": " محطة الغاز الطبيعى للسيارات التابعة لشركة ( كار جاس )",
             "pass_id": "معدية شرق التفريعة غرب",
             "notes": 65,
-            "request_status_id": 2,
+            "request_status_id": 1,
             "request_status": "تحت التنفيذ",
             "tasdek_status_id": null,
             "tasdek_status": ""
@@ -114,7 +114,7 @@
             "address": " محطة الغاز الطبيعى للسيارات التابعة لشركة ( كار جاس ) والكائنة بشارع اسيوط بجوار قسم ثالث العريش",
             "pass_id": "معدية شرق التفريعة غرب",
             "notes": "65",
-            "request_status_id": 3,
+            "request_status_id": 2,
             "request_status": "تحت التنفيذ",
             "tasdek_status_id": null,
             "tasdek_status": ""
@@ -127,7 +127,7 @@
             "address": " محطة الغاز الطبيعى للسيارات التابعة لشركة ( كار جاس ) والكائنة بشارع اسيوط بجوار قسم ثالث العريش",
             "pass_id": "معدية شرق التفريعة غرب",
             "notes": "65",
-            "request_status_id": 3,
+            "request_status_id": 2,
             "request_status": "تم الإرسال ",
             "tasdek_status_id": null,
             "tasdek_status": ""

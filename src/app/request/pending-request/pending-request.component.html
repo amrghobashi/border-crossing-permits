@@ -1,4 +1,4 @@
-<mat-grid-list cols="2" rowHeight="255px">
+<mat-grid-list cols="1" rowHeight="360px">
     <mat-grid-tile *ngFor="let request of requests">
         <mat-card dir="rtl" class="example-card" style="margin: 8px; border-radius: 8px; width: 100%; height: 85%;">
             <mat-card-title style="font-size: 1.3rem;">طلب رقم : {{ request.request_number }}</mat-card-title>
@@ -10,22 +10,22 @@
                 <mat-stepper linear [selectedIndex]='request.request_status_id' #stepper>
                     <!-- <mat-step [hidden]="true" [editable]="false"></mat-step> -->
 
-                    <mat-step completed="(request.request_status_id > 1)? true: false" [stepControl]="firstFormGroup" [editable]="false">
+                    <mat-step [completed]='request.request_status_id === 1 || request.request_status_id === 2 ? true: false' [stepControl]="firstFormGroup" [editable]="false">
                         <ng-template matStepLabel>تم الإرسال</ng-template>
                     </mat-step>
 
-                    <mat-step completed="(request.request_status_id > 2)? true: false" [stepControl]="secondFormGroup" [editable]="false">
+                    <mat-step [completed]='request.request_status_id === 2 ? true: false' [stepControl]="secondFormGroup" [editable]="false">
                         <ng-template matStepLabel>تحت التنفيذ</ng-template>
                     </mat-step>
 
-                    <mat-step completed="(request.request_status_id >= 3)? true: false" [editable]="false">
+                    <mat-step [editable]='false'>
                         <ng-template matStepLabel>تم الرد</ng-template>
                     </mat-step>
                 </mat-stepper>
 
             </mat-card-content>
             <mat-card-footer dir="ltr">
-                <button mat-button>...التفاصيل</button>
+                <button (click)="seeDetails()" mat-button style="font-size: large;">...التفاصيل</button>
             </mat-card-footer>
         </mat-card>
     </mat-grid-tile>

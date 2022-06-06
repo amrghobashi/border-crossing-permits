@@ -4,6 +4,7 @@ import { Request } from '../../Models/request';
 import { Subscription } from 'rxjs';
 import { PendingRequestService } from './pending-request.service';
 import { MatStepper } from '@angular/material/stepper';
+import { RequestDetailService } from '../request-detail/request-detail.service';
 
 @Component({
   selector: 'app-pending-request',
@@ -19,7 +20,7 @@ export class PendingRequestComponent implements OnInit, OnDestroy, AfterViewInit
   supscription: Subscription = new Subscription;
   currentState!: number;
 
-  constructor(private _formBuilder: FormBuilder, private pendingRequestService: PendingRequestService) {}
+  constructor(private _formBuilder: FormBuilder, private pendingRequestService: PendingRequestService, private requestDetailService: RequestDetailService) {}
 
   ngAfterViewInit(): void {}
 
@@ -38,6 +39,10 @@ export class PendingRequestComponent implements OnInit, OnDestroy, AfterViewInit
       this.requests = JSON.parse(JSON.stringify(requests));
       console.log(requests);
     })
+  }
+
+  seeDetails() {
+    this.requestDetailService.detailStatus.next(true);
   }
 
   ngOnDestroy(): void {

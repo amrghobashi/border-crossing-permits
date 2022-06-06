@@ -27,6 +27,7 @@ import { NewRequestComponent } from './request/new-request/new-request.component
 import { PendingRequestComponent } from './request/pending-request/pending-request.component';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { RequestDetailComponent } from './request/request-detail/request-detail.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ToolBarComponent,
     CompletedRequestComponent,
     NewRequestComponent,
-    PendingRequestComponent
+    PendingRequestComponent,
+    RequestDetailComponent
   ],
   imports: [
     BrowserModule,
