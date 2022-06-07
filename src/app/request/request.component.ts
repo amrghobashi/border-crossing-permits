@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { RequestDetailService } from './request-detail/request-detail.service';
 
 @Component({
   selector: 'app-request',
@@ -7,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestComponent implements OnInit {
   
-  constructor() {}
+  constructor(private requestDetailService: RequestDetailService) {}
 
   ngOnInit() {}
+  detailStatus: boolean = false;
+  supscription: Subscription = new Subscription;
 
+  // this.supscription = this.requestDetailService.detailStatus.subscribe(data =>{
+  //   console.log(data);
+  // }
+  // );
+  
 }

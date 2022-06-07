@@ -2,7 +2,8 @@
     <mat-tab-group dir="rtl" dynamicHeight style="font-size: large;">
         <mat-tab style="font-size: large;" label="طلبات تحت التنفيذ" class="mat-tab-label">
             <br>
-            <app-pending-request> </app-pending-request>
+            <app-pending-request *ngIf="!detailStatus"> </app-pending-request>
+            <app-request-detail *ngIf="detailStatus"></app-request-detail>
         </mat-tab>
         <mat-tab style="font-size: large;" label=" طلبات منتهية">
             <br>

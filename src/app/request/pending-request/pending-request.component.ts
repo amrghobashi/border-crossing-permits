@@ -19,6 +19,7 @@ export class PendingRequestComponent implements OnInit, OnDestroy, AfterViewInit
   isEditable = false;
   supscription: Subscription = new Subscription;
   currentState!: number;
+  detailStatus: boolean = false;
 
   constructor(private _formBuilder: FormBuilder, private pendingRequestService: PendingRequestService, private requestDetailService: RequestDetailService) {}
 
@@ -43,6 +44,11 @@ export class PendingRequestComponent implements OnInit, OnDestroy, AfterViewInit
 
   seeDetails() {
     this.requestDetailService.detailStatus.next(true);
+    this.supscription = this.requestDetailService.detailStatus.subscribe(data =>{
+      console.log(data);
+      this.detailStatus = data;
+    }
+    );
   }
 
   ngOnDestroy(): void {
