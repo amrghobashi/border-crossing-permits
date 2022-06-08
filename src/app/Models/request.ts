@@ -1,6 +1,6 @@
 export interface Request{
   id: number;
-  request_number?: number;
+  request_number: number;
   request_date?: string;
   subject?: string;
   address?: string;

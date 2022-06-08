@@ -38,17 +38,14 @@ export class PendingRequestComponent implements OnInit, OnDestroy, AfterViewInit
   fetchRequest() {
     this.supscription = this.pendingRequestService.getRequests().subscribe((requests) => {
       this.requests = JSON.parse(JSON.stringify(requests));
-      console.log(requests);
+      // console.log(requests);
     })
   }
 
-  seeDetails() {
+  seeDetails(reqId:number) {
     this.requestDetailService.detailStatus.next(true);
-    this.supscription = this.requestDetailService.detailStatus.subscribe(data =>{
-      console.log(data);
-      this.detailStatus = data;
-    }
-    );
+    this.requestDetailService.detailId.next(reqId);
+    // console.log(reqId);
   }
 
   ngOnDestroy(): void {

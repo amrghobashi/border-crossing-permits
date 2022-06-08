@@ -8,16 +8,24 @@ import { RequestDetailService } from './request-detail/request-detail.service';
   styleUrls: ['./request.component.css']
 })
 export class RequestComponent implements OnInit {
+  detailStatus: boolean = false;
+  supscription: Subscription = new Subscription;
   
   constructor(private requestDetailService: RequestDetailService) {}
 
-  ngOnInit() {}
-  detailStatus: boolean = false;
-  supscription: Subscription = new Subscription;
+  ngOnInit() {
+    this.getStatus();
+  }
+  
 
-  // this.supscription = this.requestDetailService.detailStatus.subscribe(data =>{
-  //   console.log(data);
-  // }
-  // );
+  getStatus() {
+    this.supscription = this.requestDetailService.detailStatus.subscribe(data =>{
+      console.log(data);
+      this.detailStatus = data;
+      return this.detailStatus;
+    }
+    );
+  }
+  
   
 }
