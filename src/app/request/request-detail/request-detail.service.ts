@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -6,8 +7,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class RequestDetailService {
 
-  constructor() { }
-  status: boolean = false;
-  detailStatus = new BehaviorSubject(this.status);
-  detailId = new BehaviorSubject(0);
+  constructor(private http: HttpClient) { }
+
+  getRequests(reqId: number) {
+    return this.http.get<Request[]>('http://localhost:3000/pending_requests/'+reqId);
+  }
 }

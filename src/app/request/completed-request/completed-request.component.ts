@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CompletedRequestService } from './completed-request.service';
 import { Request } from '../../Models/request';
 import { Subscription } from 'rxjs';
+import { RequestService } from '../request.service';
 
 @Component({
   selector: 'app-completed-request',
@@ -12,14 +13,17 @@ export class CompletedRequestComponent implements OnInit, OnDestroy {
   requests: Request[] = [];
 
   supscription: Subscription = new Subscription;
-  constructor(private completedRequestService: CompletedRequestService) { }
+  constructor(private completedRequestService: CompletedRequestService, private requestService: RequestService) { }
 
   ngOnInit(): void {
     this.supscription = this.completedRequestService.getRequests().subscribe((requests) => {
-      // console.log(requests);
       this.requests = JSON.parse(JSON.stringify(requests));
-      // this.requests = requests;
     })
+  }
+
+  seeDetails(reqId:number) {
+    this.requestService.detailId.next(reqId);
+    this.requestService.detailStatus.next(true);
   }
 
   ngOnDestroy(): void {

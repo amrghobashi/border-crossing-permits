@@ -5,13 +5,14 @@ import { Subscription } from 'rxjs';
 import { PendingRequestService } from './pending-request.service';
 import { MatStepper } from '@angular/material/stepper';
 import { RequestDetailService } from '../request-detail/request-detail.service';
+import { RequestService } from '../request.service';
 
 @Component({
   selector: 'app-pending-request',
   templateUrl: './pending-request.component.html',
   styleUrls: ['./pending-request.component.css']
 })
-export class PendingRequestComponent implements OnInit, OnDestroy, AfterViewInit {
+export class PendingRequestComponent implements OnInit, OnDestroy {
 
   requests: Request[] = [];
   firstFormGroup!: FormGroup;
@@ -21,9 +22,7 @@ export class PendingRequestComponent implements OnInit, OnDestroy, AfterViewInit
   currentState!: number;
   detailStatus: boolean = false;
 
-  constructor(private _formBuilder: FormBuilder, private pendingRequestService: PendingRequestService, private requestDetailService: RequestDetailService) {}
-
-  ngAfterViewInit(): void {}
+  constructor(private _formBuilder: FormBuilder, private pendingRequestService: PendingRequestService, private requestService: RequestService) {}
 
   ngOnInit() {
     this.fetchRequest();
@@ -43,13 +42,12 @@ export class PendingRequestComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   seeDetails(reqId:number) {
-    this.requestDetailService.detailStatus.next(true);
-    this.requestDetailService.detailId.next(reqId);
+    this.requestService.detailId.next(reqId);
+    this.requestService.detailStatus.next(true);
     // console.log(reqId);
   }
 
   ngOnDestroy(): void {
     this.supscription.unsubscribe();
-    
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { RequestDetailService } from './request-detail/request-detail.service';
+import { PendingRequestService } from './pending-request/pending-request.service';
+import { RequestService } from './request.service';
 
 @Component({
   selector: 'app-request',
@@ -11,7 +12,7 @@ export class RequestComponent implements OnInit {
   detailStatus: boolean = false;
   supscription: Subscription = new Subscription;
   
-  constructor(private requestDetailService: RequestDetailService) {}
+  constructor(private requestService: RequestService) {}
 
   ngOnInit() {
     this.getStatus();
@@ -19,12 +20,17 @@ export class RequestComponent implements OnInit {
   
 
   getStatus() {
-    this.supscription = this.requestDetailService.detailStatus.subscribe(data =>{
-      console.log(data);
+    this.supscription = this.requestService.detailStatus.subscribe(data =>{
+      // console.log(data);
       this.detailStatus = data;
       return this.detailStatus;
     }
     );
+  }
+
+  reset() {
+    this.requestService.detailStatus.next(false);
+    console.log("reset")
   }
   
   

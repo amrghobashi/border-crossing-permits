@@ -11,4 +11,5 @@ export class PendingRequestService {
   getRequests() {
     return this.http.get<Request[]>('http://localhost:3000/pending_requests');
   }
+
 }
