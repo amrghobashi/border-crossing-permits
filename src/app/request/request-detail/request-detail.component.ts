@@ -4,6 +4,7 @@ import { RequestDetailService } from './request-detail.service';
 import { Request } from '../../Models/request';
 import { RequestService } from './../request.service';
 import { Subscription } from 'rxjs';
+import { Item } from 'src/app/Models/item';
 
 @Component({
   selector: 'app-request-detail',
@@ -14,6 +15,7 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
 
   requestNumber!: number;
   request!: Request;
+  request_item!: Request;
   supscription: Subscription = new Subscription;
 
   constructor(private requestDetailService: RequestDetailService, private requestService: RequestService, private pendingRequestService: PendingRequestService,) { }
@@ -21,6 +23,7 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getRequestDetail();
     this.fetchRequest();
+    this.fetchItem();
   }
 
   getRequestDetail() {
@@ -33,6 +36,13 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
     this.supscription = this.requestDetailService.getRequests(this.requestNumber).subscribe((request) => {
       this.request = JSON.parse(JSON.stringify(request));
       // console.log(this.request.request_number);
+    })
+  }
+
+  fetchItem() {
+    this.supscription = this.requestDetailService.getItems(this.requestNumber).subscribe((request) => {
+      this.request_item = JSON.parse(JSON.stringify(request));
+      console.log(this.request_item.request_items);
     })
   }
 

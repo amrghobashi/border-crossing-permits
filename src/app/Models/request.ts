@@ -1,3 +1,5 @@
+import { Item } from "./item";
+
 export interface Request{
   id: number;
   request_number: number;
@@ -10,5 +12,6 @@ export interface Request{
   request_status?: string;
   tasdek_status_id?: number;
   tasdek_status?: string;
+  request_items?: Item[];
 }
 
