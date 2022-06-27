@@ -28,6 +28,7 @@ import { PendingRequestComponent } from './request/pending-request/pending-reque
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RequestDetailComponent } from './request/request-detail/request-detail.component';
+import { ItemsComponent } from './request/items/items.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { RequestDetailComponent } from './request/request-detail/request-detail.
     CompletedRequestComponent,
     NewRequestComponent,
     PendingRequestComponent,
-    RequestDetailComponent
+    RequestDetailComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,12 @@
         <p style="font-size: 1.1rem; font-weight: 500;">حالة الطلب : {{ request.request_status }}</p>
 
     </mat-card-content>
-    <mat-card-footer dir="ltr">
-        <button (click)="goBack()" mat-button style="font-size: large;">عوده</button>
+    <app-items></app-items>
+    <mat-card-footer dir="ltr" style="width: 98%">
+        <button (click)="goBack()" mat-raised-button color="" style="font-size: large; background-color: #9ee4ca;">
+            عوده
+            <mat-icon>arrow_right</mat-icon>
+        </button>
+        <!-- <button (click)="goBack()" mat-button style="font-size: large;">عوده</button> -->
     </mat-card-footer>
 </mat-card>

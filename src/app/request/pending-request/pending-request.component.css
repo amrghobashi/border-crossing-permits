@@ -1,0 +1,5 @@
+.mat-step-header .mat-step-icon-selected
+/* , .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit */
+{
+    background-color: #2b8b68 !important;
+}

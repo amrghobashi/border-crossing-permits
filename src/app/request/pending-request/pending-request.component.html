@@ -10,11 +10,15 @@
                 <mat-stepper linear [selectedIndex]='request.request_status_id' #stepper>
                     <!-- <mat-step [hidden]="true" [editable]="false"></mat-step> -->
 
-                    <mat-step [completed]='request.request_status_id === 1 || request.request_status_id === 2 ? true: false' [stepControl]="firstFormGroup" [editable]="false">
+                    <mat-step [completed]='request.request_status_id === 1 || request.request_status_id === 2 ? true: false' 
+                     [stepControl]="firstFormGroup" 
+                     [editable]="false">
                         <ng-template matStepLabel>تم الإرسال</ng-template>
                     </mat-step>
 
-                    <mat-step [completed]='request.request_status_id === 2 ? true: false' [stepControl]="secondFormGroup" [editable]="false">
+                    <mat-step [completed]='request.request_status_id === 2 ? true: false'
+                     [stepControl]="secondFormGroup"
+                     [editable]="false">
                         <ng-template matStepLabel>تحت التنفيذ</ng-template>
                     </mat-step>
 
@@ -24,9 +28,13 @@
                 </mat-stepper>
 
             </mat-card-content>
-            <mat-card-footer dir="ltr">
-                <button (click)="seeDetails(request.id)" mat-button style="font-size: large;">...التفاصيل</button>
-            </mat-card-footer>
+            <mat-card-footer dir="ltr" style="margin: 0px;">
+                <button (click)="seeDetails(request.id)" mat-raised-button
+                 style="font-size: large; background-color: #9ee4ca;">
+                    <mat-icon>arrow_left</mat-icon>
+                    التفاصيل
+                </button>
+                </mat-card-footer>
         </mat-card>
     </mat-grid-tile>
 </mat-grid-list>
