@@ -42,7 +42,7 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
   fetchItem() {
     this.supscription = this.requestDetailService.getItems(this.requestNumber).subscribe((request) => {
       this.request_item = JSON.parse(JSON.stringify(request));
-      console.log(this.request_item.request_items);
+      // console.log(this.request_item.request_items);
     })
   }
 
