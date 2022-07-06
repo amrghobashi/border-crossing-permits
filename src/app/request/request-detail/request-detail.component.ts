@@ -5,6 +5,7 @@ import { Request } from '../../Models/request';
 import { RequestService } from './../request.service';
 import { Subscription } from 'rxjs';
 import { Item } from 'src/app/Models/item';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-request-detail',
@@ -17,13 +18,22 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
   request!: Request;
   request_item!: Request;
   supscription: Subscription = new Subscription;
+  firstFormGroup!: FormGroup;
+  secondFormGroup!: FormGroup;
 
-  constructor(private requestDetailService: RequestDetailService, private requestService: RequestService, private pendingRequestService: PendingRequestService,) { }
+  constructor(private requestDetailService: RequestDetailService, private requestService: RequestService,
+    private _formBuilder: FormBuilder, private pendingRequestService: PendingRequestService) { }
 
   ngOnInit(): void {
     this.getRequestDetail();
     this.fetchRequest();
     this.fetchItem();
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required],
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required],
+    });
   }
 
   getRequestDetail() {

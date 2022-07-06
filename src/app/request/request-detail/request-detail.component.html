@@ -1,4 +1,4 @@
-<mat-card dir="rtl" class="example-card" style="margin: 8px; border-radius: 8px; width: 100%; height: 85%;">
+<mat-card dir="rtl" class="example-card" style="border-radius: 8px;height: auto;">
     <mat-card-title style="font-size: 1.3rem;">طلب رقم : {{ request.request_number }}</mat-card-title>
     <mat-card-subtitle style="margin-top: 3%; font-size: large;">{{ request.pass_id }}</mat-card-subtitle>
     <mat-card-content>
@@ -6,12 +6,27 @@
         <p style="font-size: 1.1rem; font-weight: 500;">بتاريخ : {{ request.request_date }}</p>
         <p style="font-size: 1.1rem; font-weight: 500;">العنوان : {{ request.address }}</p>
         <p style="font-size: 1.1rem; font-weight: 500;">ملاحظات : {{ request.notes }}</p>
-        <p style="font-size: 1.1rem; font-weight: 500;">حالة الطلب : {{ request.request_status }}</p>
+        <!-- <p style="font-size: 1.1rem; font-weight: 500;">حالة الطلب : {{ request.request_status }}</p> -->
+        <mat-stepper linear [selectedIndex]='request.request_status_id' #stepper>
+            <!-- <mat-step [hidden]="true" [editable]="false"></mat-step> -->
+
+            <mat-step [completed]='request.request_status_id === 1 || request.request_status_id === 2 ? true: false' [stepControl]="firstFormGroup" [editable]="false">
+                <ng-template matStepLabel>تم الإرسال</ng-template>
+            </mat-step>
+
+            <mat-step [completed]='request.request_status_id === 2 ? true: false' [stepControl]="secondFormGroup" [editable]="false">
+                <ng-template matStepLabel>تحت التنفيذ</ng-template>
+            </mat-step>
+
+            <mat-step [editable]='false'>
+                <ng-template matStepLabel>تم الرد</ng-template>
+            </mat-step>
+        </mat-stepper>
 
     </mat-card-content>
     <app-items></app-items>
-    <mat-card-footer dir="ltr" style="width: 98%">
-        <button (click)="goBack()" mat-raised-button color="" style="font-size: large; background-color: #9ee4ca;">
+    <mat-card-footer dir="ltr">
+        <button (click)="goBack()" mat-raised-button color="" style="font-size: large; background-color: #9ee4ca;margin: 10px;">
             عوده
             <mat-icon>arrow_right</mat-icon>
         </button>

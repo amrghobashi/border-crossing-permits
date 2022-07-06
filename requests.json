@@ -78,87 +78,8 @@
             "request_status_id": 0,
             "request_status": "تم الإرسال",
             "tasdek_status_id": null,
-            "tasdek_status": "",
-            "request_items": [{
-                    "id": 1,
-                    "request_number": 1000,
-                    "item_id": 1,
-                    "item_type": 1,
-                    "item_type_name": "أخرى ",
-                    "item_name": "كابلات كهرباء",
-                    "measure_unit": "بكرة",
-                    "quantity": 20,
-                    "notes": "لتوصيل كهرباء لمقر الشركة",
-                    "item_status_id": 1,
-                    "item_status_name": "موافق "
-                },
-                {
-                    "id": 2,
-                    "request_number": 1000,
-                    "item_id": 2,
-                    "item_type": 1,
-                    "item_type_name": "أخرى ",
-                    "item_name": "كابلات نحاس",
-                    "measure_unit": "بكرة",
-                    "quantity": 50,
-                    "notes": "لتوصيل كهرباء لمقر الشركة",
-                    "item_status_id": 1,
-                    "item_status_name": "موافق "
-                },
-                {
-                    "id": 3,
-                    "request_number": 1000,
-                    "item_id": 3,
-                    "item_type": 1,
-                    "item_type_name": "أخرى ",
-                    "item_name": "خراطيم مياة ",
-                    "measure_unit": "متر",
-                    "quantity": 150,
-                    "notes": "",
-                    "item_status_id": 2,
-                    "item_status_name": "غير موافق "
-                },
-                {
-                    "id": 4,
-                    "request_number": 1000,
-                    "item_id": 1,
-                    "item_type": 1,
-                    "item_type_name": "أخرى ",
-                    "item_name": "كابلات كهرباء",
-                    "measure_unit": "بكرة",
-                    "quantity": 1,
-                    "notes": "لتوصيل كهرباء لمقر الشركة",
-                    "item_status_id": 1,
-                    "item_status_name": "غير موافق "
-                },
-                {
-                    "id": 5,
-                    "request_number": 1000,
-                    "item_id": 1,
-                    "item_type": 1,
-                    "item_type_name": "أخرى ",
-                    "item_name": "كابلات كهرباء",
-                    "measure_unit": "بكرة",
-                    "quantity": 1,
-                    "notes": "لتوصيل كهرباء لمقر الشركة",
-                    "item_status_id": 1,
-                    "item_status_name": "موافق "
-                },
-                {
-                    "id": 6,
-                    "request_number": 1000,
-                    "item_id": 1,
-                    "item_type": 1,
-                    "item_type_name": "أخرى ",
-                    "item_name": "كابلات كهرباء",
-                    "measure_unit": "بكرة",
-                    "quantity": 1,
-                    "notes": "لتوصيل كهرباء لمقر الشركة",
-                    "item_status_id": 1,
-                    "item_status_name": "موافق "
-                }
+            "tasdek_status": ""
 
-            ]
         },
         {
             "id": 2,
@@ -216,5 +137,86 @@
             "tasdek_status": "",
             "request_items": []
         }
+    ],
+
+    "request_items": [{
+            "id": 1,
+            "request_number": 1000,
+            "item_id": 1,
+            "item_type": 1,
+            "item_type_name": "أخرى ",
+            "item_name": "كابلات كهرباء",
+            "measure_unit": "بكرة",
+            "quantity": 20,
+            "notes": "لتوصيل كهرباء لمقر الشركة",
+            "item_status_id": 1,
+            "item_status_name": "موافق "
+        },
+        {
+            "id": 2,
+            "request_number": 1000,
+            "item_id": 2,
+            "item_type": 1,
+            "item_type_name": "أخرى ",
+            "item_name": "كابلات نحاس",
+            "measure_unit": "بكرة",
+            "quantity": 50,
+            "notes": "لتوصيل كهرباء لمقر الشركة",
+            "item_status_id": 1,
+            "item_status_name": "موافق "
+        },
+        {
+            "id": 3,
+            "request_number": 1000,
+            "item_id": 3,
+            "item_type": 1,
+            "item_type_name": "أخرى ",
+            "item_name": "خراطيم مياة ",
+            "measure_unit": "متر",
+            "quantity": 150,
+            "notes": "",
+            "item_status_id": 2,
+            "item_status_name": "غير موافق "
+        },
+        {
+            "id": 4,
+            "request_number": 1000,
+            "item_id": 1,
+            "item_type": 1,
+            "item_type_name": "أخرى ",
+            "item_name": "كابلات كهرباء",
+            "measure_unit": "بكرة",
+            "quantity": 1,
+            "notes": "لتوصيل كهرباء لمقر الشركة",
+            "item_status_id": 1,
+            "item_status_name": "غير موافق "
+        },
+        {
+            "id": 5,
+            "request_number": 1000,
+            "item_id": 1,
+            "item_type": 1,
+            "item_type_name": "أخرى ",
+            "item_name": "كابلات كهرباء",
+            "measure_unit": "بكرة",
+            "quantity": 1,
+            "notes": "لتوصيل كهرباء لمقر الشركة",
+            "item_status_id": 1,
+            "item_status_name": "موافق "
+        },
+        {
+            "id": 6,
+            "request_number": 1000,
+            "item_id": 1,
+            "item_type": 1,
+            "item_type_name": "أخرى ",
+            "item_name": "كابلات كهرباء",
+            "measure_unit": "بكرة",
+            "quantity": 1,
+            "notes": "لتوصيل كهرباء لمقر الشركة",
+            "item_status_id": 1,
+            "item_status_name": "موافق "
+        }
+
     ]
 }
