@@ -28,8 +28,8 @@ export class ItemsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.supscription = this.requestItemService.getItems().subscribe((items) => {
       this.items = JSON.parse(JSON.stringify(items));
-      this.dataSource.data = this.items;
-      console.log(this.items);
+      // this.dataSource.data = this.items;
+      // console.log(this.items);
     })
   }
 

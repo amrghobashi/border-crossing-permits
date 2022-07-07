@@ -1,8 +1,8 @@
 <mat-card dir="rtl" class="example-card" style="border-radius: 8px;height: auto;">
-    <mat-card-title style="font-size: 1.3rem;">طلب رقم : {{ request.request_number }}</mat-card-title>
-    <mat-card-subtitle style="margin-top: 3%; font-size: large;">{{ request.pass_id }}</mat-card-subtitle>
+    <mat-card-title style="font-size: 1.3rem;">طلب رقم : {{ requestNumber }}</mat-card-title>
+    <mat-card-subtitle style="margin-top: 3%; font-size: large;">{{ req_detail[0] }}</mat-card-subtitle>
     <mat-card-content>
-        <p style="font-size: 1rem;"> {{ request.subject }}</p>
+        <p style="font-size: 1rem;"> {{ req_detail[1] }}</p>
         <p style="font-size: 1.1rem; font-weight: 500;">بتاريخ : {{ request.request_date }}</p>
         <p style="font-size: 1.1rem; font-weight: 500;">العنوان : {{ request.address }}</p>
         <p style="font-size: 1.1rem; font-weight: 500;">ملاحظات : {{ request.notes }}</p>

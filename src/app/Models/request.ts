@@ -4,9 +4,9 @@ export interface Request{
   id: number;
   request_number: number;
   request_date?: string;
-  subject?: string;
+  subject: string;
   address?: string;
-  pass_id?: string;
+  pass_id: string;
   notes?: string;
   request_status_id?: number;
   request_status?: string;
