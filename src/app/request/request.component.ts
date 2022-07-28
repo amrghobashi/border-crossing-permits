@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PendingRequestService } from './pending-request/pending-request.service';
 import { RequestService } from './request.service';
@@ -8,7 +8,7 @@ import { RequestService } from './request.service';
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css']
 })
-export class RequestComponent implements OnInit {
+export class RequestComponent implements OnInit, OnDestroy {
   detailStatus: boolean = false;
   supscription: Subscription = new Subscription;
   
@@ -33,5 +33,8 @@ export class RequestComponent implements OnInit {
     console.log("reset")
   }
   
+  ngOnDestroy(): void {
+    this.supscription.unsubscribe();
+  }
   
 }

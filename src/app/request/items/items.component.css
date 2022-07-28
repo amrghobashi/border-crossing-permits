@@ -1,0 +1,13 @@
+.headerStyle {
+    font-size: large;
+    color: black;
+}
+
+.mat-row:hover {
+    background: rgb(127 199 123 / 20%);
+}
+
+.mat-row-is-clicked {
+    font-weight: bold;
+    background: rgb(127 199 123 / 20%);
+}

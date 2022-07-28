@@ -29,6 +29,10 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RequestDetailComponent } from './request/request-detail/request-detail.component';
 import { ItemsComponent } from './request/items/items.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRippleModule } from '@angular/material/core';
+import { TestComponent } from './request/items/test/test.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +43,8 @@ import { ItemsComponent } from './request/items/items.component';
     NewRequestComponent,
     PendingRequestComponent,
     RequestDetailComponent,
-    ItemsComponent
+    ItemsComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +69,9 @@ import { ItemsComponent } from './request/items/items.component';
     MatStepperModule,
     CommonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatRippleModule
   ],
   exports: [],
   providers: [],

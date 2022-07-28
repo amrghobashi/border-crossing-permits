@@ -20,11 +20,6 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
   supscription: Subscription = new Subscription;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
-  pass_id: string = "";
-  req_detail: [
-    pass: string,
-    subject: string
-  ] = ["",""];
 
   constructor(private requestDetailService: RequestDetailService, private requestService: RequestService,
     private _formBuilder: FormBuilder, private pendingRequestService: PendingRequestService) { }
@@ -51,9 +46,7 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
   fetchRequest() {
     this.supscription = this.requestDetailService.getRequests(this.requestNumber).subscribe((request) => {
       this.request = JSON.parse(JSON.stringify(request));
-      let pass_id = this.request.pass_id;
-      this.req_detail = [this.request.pass_id, this.request.subject]
-      // console.log(this.request.request_number);
+      // console.log(this.request);
     })
   }
 

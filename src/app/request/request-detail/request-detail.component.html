@@ -1,34 +1,53 @@
 <mat-card dir="rtl" class="example-card" style="border-radius: 8px;height: auto;">
-    <mat-card-title style="font-size: 1.3rem;">طلب رقم : {{ requestNumber }}</mat-card-title>
-    <mat-card-subtitle style="margin-top: 3%; font-size: large;">{{ req_detail[0] }}</mat-card-subtitle>
+    <mat-card-title style="font-size: 1.3rem;">طلب رقم : {{ request['request_id'] }}</mat-card-title>
+    <mat-card-subtitle style="margin-top: 3%; font-size: large;">{{ request['pass_id'] }}</mat-card-subtitle>
     <mat-card-content>
-        <p style="font-size: 1rem;"> {{ req_detail[1] }}</p>
-        <p style="font-size: 1.1rem; font-weight: 500;">بتاريخ : {{ request.request_date }}</p>
-        <p style="font-size: 1.1rem; font-weight: 500;">العنوان : {{ request.address }}</p>
-        <p style="font-size: 1.1rem; font-weight: 500;">ملاحظات : {{ request.notes }}</p>
-        <!-- <p style="font-size: 1.1rem; font-weight: 500;">حالة الطلب : {{ request.request_status }}</p> -->
-        <mat-stepper linear [selectedIndex]='request.request_status_id' #stepper>
-            <!-- <mat-step [hidden]="true" [editable]="false"></mat-step> -->
+        <p style="font-size: 1.1rem;"> {{ request['subject'] }}</p>
+        <p style="font-size: 1.1rem; font-weight: 500;">بتاريخ : {{ request['request_date'] }}</p>
+        <p style="font-size: 1.1rem; font-weight: 500;">العنوان : {{ request['address'] }}</p>
+        <p style="font-size: 1.1rem; font-weight: 500;" *ngIf="request.r_notes;">ملاحظات : {{ request['r_notes'] }}</p>
 
-            <mat-step [completed]='request.request_status_id === 1 || request.request_status_id === 2 ? true: false' [stepControl]="firstFormGroup" [editable]="false">
+        <p *ngIf="request.request_status_id === 2;" style="font-size: 1.1rem; font-weight: 500;"> حالة الطلب :
+            <a style="background-color: #6dbd28; padding: 5px; border-radius: 5px; color: white; font-size: 1rem;">
+                {{request.request_status_name}} 
+            </a>
+        </p>
+        <p *ngIf="request.request_status_id === 3;" style="font-size: 1.1rem; font-weight: 500;"> حالة الطلب :
+            <a style="background-color: #16a7acbf; padding: 5px; border-radius: 5px; color: white; font-size: 1rem;">
+                {{request.request_status_name}} 
+            </a>
+        </p>
+        <p *ngIf="request.amana_responce_id === 1;" style="font-size: 1.1rem; font-weight: 500;"> حالة التصديق :
+            <a style="background-color: #6dbd28; padding: 5px; border-radius: 5px; color: white; font-size: 1rem;">
+                 {{request.responce_name}} 
+            </a>
+        </p>
+        <p *ngIf="request.amana_responce_id === 2;" style="font-size: 1.1rem; font-weight: 500;"> حالة التصديق :
+            <a style="background-color: #b01818bf; padding: 5px; border-radius: 5px; color: white; font-size: 1rem;">
+                 {{request.responce_name}}  
+            </a>
+        </p>
+        <!-- <mat-stepper linear [selectedIndex]=2 #stepper>
+
+            <mat-step [completed]='req_detail[5] === 1 || req_detail[5] === 2 ? true: false' [stepControl]="firstFormGroup" [editable]="false">
                 <ng-template matStepLabel>تم الإرسال</ng-template>
             </mat-step>
 
-            <mat-step [completed]='request.request_status_id === 2 ? true: false' [stepControl]="secondFormGroup" [editable]="false">
+            <mat-step [completed]='req_detail[5] === 2 ? true: false' [stepControl]="secondFormGroup" [editable]="false">
                 <ng-template matStepLabel>تحت التنفيذ</ng-template>
             </mat-step>
 
             <mat-step [editable]='false'>
                 <ng-template matStepLabel>تم الرد</ng-template>
             </mat-step>
-        </mat-stepper>
+        </mat-stepper> -->
 
     </mat-card-content>
     <app-items></app-items>
     <mat-card-footer dir="ltr">
         <button (click)="goBack()" mat-raised-button color="" style="font-size: large; background-color: #9ee4ca;margin: 10px;">
             عوده
-            <mat-icon>arrow_right</mat-icon>
+            <mat-icon>chevron_right</mat-icon>
         </button>
         <!-- <button (click)="goBack()" mat-button style="font-size: large;">عوده</button> -->
     </mat-card-footer>

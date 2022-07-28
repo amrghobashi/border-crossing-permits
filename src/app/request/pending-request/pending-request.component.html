@@ -1,24 +1,22 @@
 <mat-grid-list cols="1" rowHeight="360px">
     <mat-grid-tile *ngFor="let request of requests">
-        <mat-card dir="rtl" class="example-card" style="margin: 8px; border-radius: 8px; width: 100%; height: 85%;">
-            <mat-card-title style="font-size: 1.3rem;">طلب رقم : {{ request.request_number }}</mat-card-title>
+        <mat-card dir="rtl" class="example-card" style="margin: 8px; border-radius: 8px; width: 100%; height: auto;">
+            <mat-card-title style="font-size: 1.3rem;"> Amr ali طلب رقم : {{ request.request_id }}</mat-card-title>
             <mat-card-subtitle style="margin-top: 3%; font-size: large;">{{ request.pass_id }}</mat-card-subtitle>
             <mat-card-content>
-                <p style="font-size: 1rem;"> {{ request.subject }}</p>
+                <p style="font-size: 1rem;"> {{ request.subject | slice:0:300 }}
+                    <a *ngIf="request.subject.length >=300">...</a>
+                </p>
                 <p style="font-size: 1.1rem; font-weight: 500;">بتاريخ : {{ request.request_date }}</p>
 
-                <mat-stepper linear [selectedIndex]='request.request_status_id' #stepper>
+                <mat-stepper linear [selectedIndex]='request.request_status_id - 1' #stepper>
                     <!-- <mat-step [hidden]="true" [editable]="false"></mat-step> -->
 
-                    <mat-step [completed]='request.request_status_id === 1 || request.request_status_id === 2 ? true: false' 
-                     [stepControl]="firstFormGroup" 
-                     [editable]="false">
+                    <mat-step [completed]='request.request_status_id >= 2 ? true: false' [stepControl]="firstFormGroup" [editable]="false">
                         <ng-template matStepLabel>تم الإرسال</ng-template>
                     </mat-step>
 
-                    <mat-step [completed]='request.request_status_id === 2 ? true: false'
-                     [stepControl]="secondFormGroup"
-                     [editable]="false">
+                    <mat-step [completed]='request.request_status_id === 3 ? true: false' [stepControl]="secondFormGroup" [editable]="false">
                         <ng-template matStepLabel>تحت التنفيذ</ng-template>
                     </mat-step>
 
@@ -30,10 +28,10 @@
             </mat-card-content>
             <mat-card-footer dir="ltr" style="margin: 0px;">
                 <button (click)="seeDetails(request.id)" mat-raised-button style="font-size: large; background-color: #9ee4ca;">
-                    <mat-icon>arrow_left</mat-icon>
+                    <mat-icon>chevron_left</mat-icon>
                     التفاصيل
                 </button>
-                </mat-card-footer>
+            </mat-card-footer>
         </mat-card>
     </mat-grid-tile>
 </mat-grid-list>

@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Item } from 'src/app/Models/item';
-import { Subject } from 'rxjs';
+import { Pass } from 'src/app/Models/passes';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RequestItemService {
+export class TestService {
 
   constructor(private http: HttpClient) { }
-  itemDetailId = new Subject<number>();
-  getItems() {
+
+  getPasses(id: number) {
     // return this.http.get<Item[]>('http://localhost:3000/request_items/'+reqId);
-    return this.http.get<Item[]>('http://localhost:3000/request_items');
+    return this.http.get<Pass[]>('http://localhost:3000/passes');
   }
 }

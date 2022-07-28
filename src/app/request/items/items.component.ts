@@ -1,11 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Item } from '../../Models/item';
-import { Request } from '../../Models/request';
 import { Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { RequestDetailService } from '../request-detail/request-detail.service';
 import { RequestItemService } from './items.service';
 
 @Component({
@@ -26,18 +24,29 @@ export class ItemsComponent implements OnInit, OnDestroy {
   constructor(private requestItemService: RequestItemService) {}
 
   ngOnInit() {
+    this.fetchItems();
+  }
+
+  fetchItems() {
     this.supscription = this.requestItemService.getItems().subscribe((items) => {
       this.items = JSON.parse(JSON.stringify(items));
-      // this.dataSource.data = this.items;
+      this.dataSource.data = this.items;
       // console.log(this.items);
     })
   }
 
-  // displayedColumns: string[] = ['item_name', 'item_type_name', 'measure_unit', 'quantity', 'notes', 'item_status_name'];
-  displayedColumns: string[] = ['item_name','item_type_name','measure_unit','quantity','notes','item_status_name',];
-  // dataSource: Request[] = [];
-  dataSource = new MatTableDataSource<Request>();
+  displayedColumns: string[] = ['item_name', 'item_type_name', 'measure_unit', 'quantity', 'notes', 'item_status_name'];
+  // dataSource: Item[] = [];
+  dataSource = new MatTableDataSource<Item>();
+  clickedRows = new Set<Item['id']>();
+  it!: number;
 
+  onClick(id: number): void {
+    this.clickedRows = new Set();
+    // this.it = id;
+    this.requestItemService.itemDetailId.next(id);
+  }
+  
   ngOnDestroy() {
     this.supscription.unsubscribe();
   }

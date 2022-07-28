@@ -1,24 +1,33 @@
 <mat-grid-list cols="1" rowHeight="255px">
     <mat-grid-tile *ngFor="let request of requests">
         <mat-card dir="rtl" class="example-card" style="margin: 8px; border-radius: 8px; width: 100%; height: 85%;">
-            <mat-card-title style="font-size: 1.3rem;">طلب رقم : {{ request.request_number }}</mat-card-title>
+            <mat-card-title style="font-size: 1.3rem;">طلب رقم : {{ request.request_id }}</mat-card-title>
             <mat-card-subtitle style="margin-top: 3%; font-size: large;">{{ request.pass_id }}</mat-card-subtitle>
             <mat-card-content>
-                <p style="font-size: 1rem;"> {{ request.subject }}</p>
+                <p style="font-size: 1rem;"> {{ request.subject | slice:0:300 }}
+                    <a *ngIf="request.subject.length >=300">...</a>
+                </p>
                 <p style="font-size: 1.1rem; font-weight: 500;">بتاريخ : {{ request.request_date }}</p>
-                <a *ngIf="request.tasdek_status_id === 1;" style="background-color: #6dbd28; padding: 5px; border-radius: 5px; color: white; font-size: 1rem;">
-                    {{request.tasdek_status}} </a>
-                <a *ngIf="request.tasdek_status_id === 2;" style="background-color: #b01818bf; padding: 5px; border-radius: 5px; color: white; font-size: 1rem;">
-                    {{request.tasdek_status}} 
+                <a *ngIf="request.amana_responce_id === 1;" style="background-color: #6dbd28; padding: 5px; border-radius: 5px; color: white; font-size: 1rem;">
+                    {{request.responce_name}} 
+                </a>
+                <a *ngIf="request.amana_responce_id === 2;" style="background-color: #b01818bf; padding: 5px; border-radius: 5px; color: white; font-size: 1rem;">
+                    {{request.responce_name}} 
                     <!-- <mat-icon>sentiment_very_dissatisfied</mat-icon> -->
+                </a>
+                <a *ngIf="request.amana_responce_id === 4;" style="background-color: #1ea5e4; padding: 5px; border-radius: 5px; color: white; font-size: 1rem;">
+                    {{request.responce_name}} 
                 </a>
 
             </mat-card-content>
             <!-- <mat-card-actions>
                 <button mat-button>التفاصيل...</button>
             </mat-card-actions> -->
-            <mat-card-footer dir="ltr">
-                <button mat-button (click)="seeDetails(request.request_number)">...التفاصيل</button>
+            <mat-card-footer dir="ltr" style="margin: 0px;">
+                <button (click)="seeDetails(request.id)" mat-raised-button style="font-size: large; background-color: #9ee4ca;">
+                    <mat-icon>chevron_left</mat-icon>
+                    التفاصيل
+                </button>
             </mat-card-footer>
         </mat-card>
     </mat-grid-tile>

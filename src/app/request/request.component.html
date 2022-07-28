@@ -1,5 +1,9 @@
 <mat-card class="main-card">
     <mat-tab-group (selectedTabChange)="reset()" dir="rtl" dynamicHeight style="font-size: large;">
+        <!-- <mat-tab style="font-size: large;" label="طلب جديد">
+            <br>
+            <app-new-request *ngIf="!detailStatus"></app-new-request>
+        </mat-tab> -->
         <mat-tab style="font-size: large;" label="طلبات تحت التنفيذ" class="mat-tab-label">
             <br>
             <app-pending-request *ngIf="!detailStatus"> </app-pending-request>
