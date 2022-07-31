@@ -38,10 +38,17 @@ export class TestComponent implements OnInit {
       this.dataSource.data = this.passes;
     })
   }
-  displayedColumns: string[] = ['pass_id', 'pass_name'];
+  displayedColumns: string[] = ['pass_id', 'pass_name','actions'];
   // dataSource: Item[] = [];
   dataSource = new MatTableDataSource<Pass>();
 
+  editRow(pass: Pass) {
+    console.log("edit"+ pass.pass_id);
+  }
+
+  deleteRow(pass: Pass) {
+    console.log("delete" + pass.pass_id);
+  }
   ngOnDestroy() {
     this.supscription.unsubscribe();
   }
