@@ -1,7 +1,7 @@
 <mat-grid-list cols="1" rowHeight="360px">
     <mat-grid-tile *ngFor="let request of requests">
         <mat-card dir="rtl" class="example-card" style="margin: 8px; border-radius: 8px; width: 100%; height: auto;">
-            <mat-card-title style="font-size: 1.3rem;"> Amr ali طلب رقم : {{ request.request_id }}</mat-card-title>
+            <mat-card-title style="font-size: 1.3rem;"> طلب رقم : {{ request.request_id }}</mat-card-title>
             <mat-card-subtitle style="margin-top: 3%; font-size: large;">{{ request.pass_id }}</mat-card-subtitle>
             <mat-card-content>
                 <p style="font-size: 1rem;"> {{ request.subject | slice:0:300 }}

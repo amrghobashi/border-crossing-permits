@@ -4,15 +4,17 @@
             <br>
             <app-new-request *ngIf="!detailStatus"></app-new-request>
         </mat-tab> -->
-        <mat-tab style="font-size: large;" label="طلبات تحت التنفيذ" class="mat-tab-label">
+        <mat-tab routerLink="pending-request" routerLinkActive="active" ariaCurrentWhenActive="page" style="font-size: large;" label="طلبات تحت التنفيذ" class="mat-tab-label">
             <br>
             <app-pending-request *ngIf="!detailStatus"> </app-pending-request>
             <app-request-detail *ngIf="detailStatus"></app-request-detail>
         </mat-tab>
-        <mat-tab style="font-size: large;" label=" طلبات منتهية">
+        <mat-tab routerLink="completed-request" routerLinkActive="active" ariaCurrentWhenActive="page" style="font-size: large;" label=" طلبات منتهية">
             <br>
             <app-completed-request *ngIf="!detailStatus"></app-completed-request>
             <app-request-detail *ngIf="detailStatus"></app-request-detail>
         </mat-tab>
     </mat-tab-group>
 </mat-card>
+
+<!-- <router-outlet></router-outlet> -->
