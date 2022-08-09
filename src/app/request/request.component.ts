@@ -33,6 +33,7 @@ export class RequestComponent implements OnInit, OnDestroy {
     console.log("reset")
   }
   
+  
   ngOnDestroy(): void {
     this.supscription.unsubscribe();
   }
