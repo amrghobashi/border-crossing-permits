@@ -1,0 +1,19 @@
+.messageSuccess {
+    background-color: #b4df8e;
+    padding: 15px;
+    color: #333;
+    border: #7fa162 solid 1px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: large
+  }
+  
+  .messageFailed {
+    background-color: #c45252;
+    padding: 15px;
+    color: white;
+    border: #973838 solid 1px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: large
+  }

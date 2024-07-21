@@ -1,0 +1,15 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <p>auto resize</p>
+        <p *ngIf="showFilter">showFilter</p>
+        <button (click)="showFilter = !showFilter" mat-raised-button>
+            toggle extra
+        </button>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <button type="button" mat-button (click)="drawer.toggle()">
+            toggle
+        </button>
+    </div>
+</mat-drawer-container>

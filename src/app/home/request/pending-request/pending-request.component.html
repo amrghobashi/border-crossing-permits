@@ -1,0 +1,86 @@
+<div *ngIf="!isLoading else loading">
+    <br>
+    <div *ngIf="!detailStatus">
+        <div dir="rtl" style="text-align: center;">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input type="number" matInput placeholder="بحث برقم الطلب" (keyup)="onKey($event)">
+            </mat-form-field>
+        </div>
+        <div style="align-items: center; display: flex;">
+            <div style="margin:0 auto; text-align: center;">
+                <mat-button-toggle-group appearance="legacy" name="fontStyle" class="toggleButton">
+                    <mat-button-toggle (click)="toggleClick(3)" style="color: #545454;">
+                        <mat-icon>hourglass_empty</mat-icon>
+                        قيد التنفيذ
+                    </mat-button-toggle>
+                    <mat-button-toggle (click)="toggleClick(2)" style="color: #545454;">
+                        <mat-icon>archive</mat-icon>
+                        تم الإستلام
+                    </mat-button-toggle>
+                    <mat-button-toggle (click)="toggleClick(0)" style="color: #545454;">
+                        الكل
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <!-- <mat-grid-list *ngIf="!detailStatus else detail" cols="1" rowHeight="360px">
+        <mat-grid-tile
+            *ngFor="let request of requestsArray |slice:((paginator.pageIndex)*paginator.pageSize):((paginator.pageIndex+1)*paginator.pageSize)"> -->
+
+    <div *ngIf="!detailStatus else detail" class="containerCard"> 
+        <mat-card dir="rtl" class="matCard"
+            *ngFor="let request of requestsArray |slice:((paginator.pageIndex)*paginator.pageSize):((paginator.pageIndex+1)*paginator.pageSize)">
+            <mat-card-title style="font-size: 1.3rem;"> طلب رقم : {{ request.request_id }}</mat-card-title>
+            <br>
+            <mat-card-content>
+                <p class="subjectFont"><b class="headerFont">المعبر :</b>{{ request.pass_name }}</p>
+                <p class="subjectFont"><b class="headerFont">الموضوع :</b> {{ request.subject | slice:0:300 }}
+                    <a *ngIf="request.subject.length >=300">...</a>
+                </p>
+                <p class="subjectFont"><b class="headerFont">بتاريخ : </b>{{ request.request_date | date:
+                    'yyyy/MM/dd'}}
+                </p>
+                    <mat-stepper
+                    [orientation]="(stepperOrientation | async)!"
+                    [selectedIndex]='request.request_status_id - 1' #stepper>
+                    
+                    <mat-step [completed]='request.request_status_id >= 2 ? true: false' [editable]="false">
+                        <ng-template matStepLabel>تم الإرسال</ng-template>
+                    </mat-step>
+
+                        <mat-step [completed]='request.request_status_id === 3 ? true: false' [editable]="false">
+                            <ng-template matStepLabel>تم الإستلام </ng-template>
+                        </mat-step>
+                        
+                        <mat-step [editable]='false'>
+                            <ng-template matStepLabel>قيد التنفيذ</ng-template>
+                        </mat-step>
+                    </mat-stepper>
+                    
+                </mat-card-content>
+                <mat-card-footer dir="ltr" style="margin: 0px;">
+                    <button (click)="seeDetails(request.request_id)" mat-raised-button
+                        style="font-size: large; background-color: #e3e3e3;">
+                        <mat-icon>dehaze</mat-icon>
+                        التفاصيل
+                    </button>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+        <!-- </mat-grid-tile>
+    </mat-grid-list> -->
+    <mat-paginator #paginator [length]="paginationLength" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 15, 20]"
+        (page)="pageEvent = $event">
+    </mat-paginator>
+</div>
+
+<ng-template #detail>
+    <app-request-detail [requestNo]="detailId"></app-request-detail>
+</ng-template>
+
+<ng-template #loading>
+    <mat-spinner style="margin-inline: auto;"></mat-spinner>
+</ng-template>

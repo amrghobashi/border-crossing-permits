@@ -1,0 +1,59 @@
+<br>
+<!-- <mat-card class="main-card">
+    <mat-tab-group (selectedTabChange)="reset()" dir="rtl" dynamicHeight style="font-size: large;">
+        <mat-tab style="font-size: large;" label="طلب جديد">
+            <ng-template mat-tab-label>
+                <span matBadge="1" matBadgeColor="accent">طلب جديد </span>
+            </ng-template>
+            <br>
+            <app-new-request *ngIf="!detailStatus"></app-new-request>
+        </mat-tab>
+        <mat-tab style="font-size: large;" class="mat-tab-label">
+            <ng-template mat-tab-label>
+                <span matBadge="5" matBadgeColor="warn">طلبات تحت التنفيذ</span>
+            </ng-template>
+            <br>
+            <app-pending-request *ngIf="!detailId else detail"> </app-pending-request>
+        </mat-tab>
+        <mat-tab style="font-size: large;">
+            <ng-template mat-tab-label>
+                <span matBadge="12" matBadgeColor="primary">طلبات منتهية</span>
+            </ng-template>
+            <br>
+            <app-completed-request *ngIf="!detailStatus else detail"></app-completed-request>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>
+
+<ng-template #detail>
+    <app-request-detail></app-request-detail>
+</ng-template> -->
+
+
+<mat-card class="main-card">
+    <nav mat-tab-nav-bar ngClass = "tabs" (selectedTabChange)="reset()" dir="rtl" dynamicHeight style="font-size: large;">
+        <!-- <a mat-tab-link routerLink="pending-requests" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive" style="font-size: large;">
+            <ng-template mat-tab-label>
+                <span matBadge="5" matBadgeColor="warn">طلبات تحت التنفيذ</span>
+            </ng-template>
+            طلبات تحت التنفيذ
+        </a>
+        <a mat-tab-link routerLink="completed-requests" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive" style="font-size: large;"> طلبات منتهية</a>
+        <a mat-tab-link routerLink="new-request" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive" style="font-size: large;">new</a> -->
+        <a mat-tab-link *ngFor="let link of tabLinks"
+            routerLink="{{ link.path }}"
+            (click)="activelink = link.path; getCount();"
+            [active]="activelink == link.path"
+            style="font-size: large;">
+            <span matBadge="{{ link.count }}" matBadgeColor="warn">{{ link.label }}</span>
+        </a>
+    </nav>
+    <router-outlet></router-outlet>
+<!-- <br><br> -->
+</mat-card>
+<app-footer></app-footer>
+<!-- <footer>
+    <p class="p-footer">
+        تم التصميم والتنفيذ بواسطة مركز إنتاج البرمجيات الرئيسي ق.م© 2023 
+    </p>
+</footer> -->

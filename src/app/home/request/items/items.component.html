@@ -1,0 +1,34 @@
+<h1 style="text-align: center; font-size: 30px; font-weight: bold;">الأصناف</h1>
+<div class="mat-elevation-z8 tableContainer">
+    <table style="width: 100%;" dir="rtl" mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+        <ng-container matColumnDef="item_list_name">
+            <th style="width: auto;" mat-header-cell *matHeaderCellDef mat-sort-header class="headerStyle"> إسم الصنف </th>
+            <td mat-cell *matCellDef="let element"> {{element.item_list_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="item_unit_name">
+            <th style="width: auto;" mat-header-cell *matHeaderCellDef mat-sort-header class="headerStyle"> وحدة القياس </th>
+            <td mat-cell *matCellDef="let element"> {{element.item_unit_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="quantity">
+            <th style="width: auto;" mat-header-cell *matHeaderCellDef mat-sort-header class="headerStyle"> الكمية </th>
+            <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+        </ng-container>
+        <ng-container *ngIf="isCompletedReq" matColumnDef="response_name">
+            <th style="width: auto;" mat-header-cell *matHeaderCellDef mat-sort-header class="headerStyle"> حالة الصنف </th>
+            <td mat-cell *matCellDef="let element"> {{element.response_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="other_details">
+            <th style="width: auto;" mat-header-cell *matHeaderCellDef mat-sort-header class="headerStyle"> ملاحظات </th>
+            <td mat-cell *matCellDef="let element"> {{element.other_details}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row [ngClass]="{'refusedItem': row.hayaa_responce === 2}"
+            (click)="onClick(row.id); clickedRows.add(row)"
+            [class.mat-row-is-clicked]='clickedRows.has(row)'
+            *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>

@@ -1,0 +1,24 @@
+<div>
+    <div style="text-align: center; ">
+        <form [formGroup]="excelFormGroup" (ngSubmit)="onSubmitFile()" style="margin: auto;">
+            <div>
+                <input type="file" (change)="onSelectFile($event)" style="background: #dfdfdf; width: 290px;" accept=".xlsx">
+                <button *ngIf="fileName !== '' " mat-flat-button style="background-color: #2b8b68; color: white; margin-right: 1%;"
+                    type="submit">رفع الملف
+                    <mat-icon>cloud_upload</mat-icon>
+                </button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div>
+        <mat-toolbar *ngIf="currentFile" class="progress-bar">
+            <mat-progress-bar color="warn" [value]="progress"></mat-progress-bar>
+            <span class="progress">{{ progress }}%</span>
+        </mat-toolbar>
+    </div>
+</div>
+<div *ngIf="fileName !== '' && message"
+    [ngClass]="{'messageSuccess': uploadDone === true, 'messageFailed': uploadDone === false}">
+    {{ message }}
+</div>

@@ -1,0 +1,143 @@
+<mat-accordion dir="rtl" class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title style="font-size: large;">
+            البيانات اللأساسية للطلب
+            </mat-panel-title>
+            <mat-panel-description dir="ltr">
+                <!-- أدخل العنوان والموضوع والمعبر -->
+                <mat-icon>edit</mat-icon>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+  
+        <div class="example-container" *ngIf="!isLoading else loading">
+            <br>
+            <form (ngSubmit)="newReqStatus? updateRequest() : addRequest() " [formGroup]="firstFormGroup">
+                <div *ngIf="newRequestNO">
+                    <p style="font-size: 25px; color: #2b8b68">طلب رقم: {{ newRequestNO }}</p>
+                </div>
+                <div>
+                    <mat-form-field class="formFieldClass" appearance="fill">
+                        <mat-label>الموضوع </mat-label>
+                        <textarea matInput formControlName="subject" placeholder="موضوع الطلب"></textarea>
+                        <mat-error *ngIf="this.firstFormGroup.get('subject')?.invalid">{{ showErrorMsg('subject') }}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="formFieldClass" appearance="fill">
+                        <mat-label>العنوان </mat-label>
+                        <textarea matInput formControlName="address" placeholder="العنوان المراد الوصول إليه"></textarea>
+                        <mat-error *ngIf="this.firstFormGroup.get('address')?.invalid">{{ showErrorMsg('address') }}</mat-error>
+                    </mat-form-field> 
+                </div>
+                <div>
+                    <mat-form-field class="formFieldClass" appearance="fill">
+                        <mat-label>المعبر</mat-label>
+                        <mat-select formControlName="pass_id">
+                        <!-- <input (keyup)="onKey($event, passes)"> -->
+                        <mat-option *ngFor="let pass of passes" value={{pass.pass_id}}> {{ pass.pass_name }}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="this.firstFormGroup.get('pass_id')?.invalid">{{ showErrorMsg('pass_id') }}</mat-error>
+                    </mat-form-field> 
+
+                    <!-- <mat-form-field style="margin-left: 1%; margin-right: 1%; width:48%;" appearance="fill">
+                        <mat-label>المعبر</mat-label>
+                        <mat-select formControlName="pass_id">
+                            <mat-option>
+                                <ngx-mat-select-search [formControl]="filterControl"></ngx-mat-select-search>
+                            </mat-option>
+                        <input (keyup)="onKey($event, passes)">
+                        <mat-option *ngFor="let pass of passes" value={{pass.pass_id}}> {{ pass.pass_name }}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="this.firstFormGroup.get('pass_id')?.invalid">{{ showErrorMsg('pass_id') }}</mat-error>
+                    </mat-form-field> -->
+                   
+                    <mat-form-field class="formFieldClass" appearance="fill">
+                        <mat-label>ملاحظات </mat-label>
+                        <textarea matInput formControlName="r_notes" placeholder="   الملاحظات إن وجدت"></textarea>
+                        <mat-error *ngIf="this.firstFormGroup.get('r_notes')?.invalid">{{ showErrorMsg('r_notes') }}</mat-error>
+                    </mat-form-field>
+                </div>
+                <br>
+                <mat-action-row style="justify-content: space-between;">
+                    <button  mat-raised-button  style="font-size: large; background-color: #f5f5f5; margin: 10px;">
+                        {{ newReqStatus? 'تعديل' : 'حفظ' }}
+                    </button>
+                    <button type="button" mat-raised-button style="font-size: large; background-color: #f5f5f5;margin: 10px;" (click)="nextStep()" 
+                        title="يجب حفظ الطلب أولا قبل الإنتقال إلى الخطوة التالية"
+                        [disabled]="!newReqStatus ? true : null" aria-label="يجب حفظ الطلب أولا قبل الإنتقال إلى الخطوة التالية">
+                        التالي
+                    </button>
+                </mat-action-row>
+            </form>
+
+
+
+
+            
+        </div>
+  <!-- #enddocregion action-bar -->
+    </mat-expansion-panel>
+  
+    <mat-expansion-panel  [expanded]="step === 1" (opened)="setStep(1)" hideToggle [disabled]="!newReqStatus ? true : null">
+      <mat-expansion-panel-header>
+        <mat-panel-title style="font-size: large;">
+          بيانات الأصناف والمرفقات
+        </mat-panel-title>
+        <mat-panel-description dir="ltr">
+          <mat-icon>description</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+    <mat-stepper [linear]="false" #stepper [orientation]="(stepperOrientation | async)!" (click)="stepperClick(stepper.selectedIndex)">
+        <mat-step>
+            <br>
+            <ng-template matStepLabel> الأصناف </ng-template>
+            <app-add-item *ngIf="newRequestNO" [newRequestNO]="newRequestNO"></app-add-item>
+            <!-- <div dir="ltr">
+                <button mat-button matStepperNext>التالي</button>
+            </div> -->
+        </mat-step>
+
+        <mat-step>
+            <br>
+                <ng-template matStepLabel> الأصناف الغير متواجدة</ng-template>
+                <app-add-extra-item *ngIf="(newRequestNO && stepperIndex == 1 ) || stepperIndex1 == true" [newRequestNO]="newRequestNO"></app-add-extra-item>
+                <!-- <div>
+                    <button mat-button matStepperPrevious>رجوع</button>
+                    <button mat-button matStepperNext>التالي</button>
+                </div> -->
+        </mat-step>
+
+        <mat-step >
+            <br>
+            <ng-template matStepLabel> المرفقات</ng-template>
+            <app-file-uploader *ngIf="(newRequestNO && stepperIndex == 2) || stepperIndex2 == true" [requestNo]="newRequestNO" [addImgFlag]="true"></app-file-uploader>
+        </mat-step>
+
+        <mat-step >
+            <div style="background-color: rgb(238, 237, 243); border-radius: 35px;">
+
+                <br>
+                <ng-template matStepLabel>تأكيد الإرسال</ng-template>
+                
+                <p style="text-align: center; font-size: x-large;">تهانينا لقد انتهيت من تسجيل الطلب</p>
+                <img src="assets/7.gif" oncontextmenu="return false;"  class="login-lock-icon" alt="">
+                <div style="text-align: center; font-size: x-large;">
+                    <button mat-raised-button type="button" [disabled]="requestSent" style="font-size: large; background-color: #f5f5f5;margin: 10px;"
+                        (click)="countReqeustItems(newRequestNO)">تأكيد الإرسال
+                    </button>
+                    <mat-error *ngIf="noItemsMsg" style="margin-right: 1%;">*من فضلك قم بتسجيل صنف واحد على الأقل!</mat-error>
+                    <mat-error *ngIf="!noItemsMsg" style="margin-right: 1%;">*إذا قمت بتأكيد الإرسال لن يمكنك من التعديل في الطلب مرة أخرى!</mat-error>
+                </div>
+            </div>
+        </mat-step>
+    </mat-stepper>
+  
+      <mat-action-row>
+        <button mat-raised-button style="font-size: large; background-color: #f5f5f5;margin: 10px;" (click)="prevStep()">السابق</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+</mat-accordion>
+
+<ng-template #loading>
+    <mat-spinner style="margin-inline: auto; height: 400px;"></mat-spinner>
+</ng-template>

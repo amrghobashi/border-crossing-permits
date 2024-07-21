@@ -1,0 +1,89 @@
+.progress-bar {
+  padding: 0;
+}
+
+.progress {
+  width: 50px;
+}
+
+#fileInput {
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+}
+
+.mat-toolbar-single-row {
+  height: auto !important;
+  background: transparent;
+  padding: 0;
+}
+
+.mat-toolbar-single-row button {
+  width: 100px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.messageSuccess {
+  background-color: #b4df8e;
+  padding: 15px;
+  color: #333;
+  border: #7fa162 solid 1px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: large
+}
+
+.messageFailed {
+  background-color: #c45252;
+  padding: 15px;
+  color: white;
+  border: #973838 solid 1px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: large
+}
+
+.subjectFont {
+  font-size: 18px;
+  color: #484848;
+}
+
+.containerCard {
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.matCard{
+  margin: 1%;
+  /* border-radius: 8px; */
+  /* height: auto; */
+  width: 18%;
+  /* border-radius: 8px; */
+  background-color: #ededed;
+}
+
+.imgClass{
+  width: -webkit-fill-available;
+  height: 15vh;
+  /* width: 14vw; */
+}
+
+@media (max-width: 960px) {
+  .matCard{
+    width: 24%;
+  }
+}

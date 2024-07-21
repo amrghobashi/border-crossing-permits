@@ -1,0 +1,43 @@
+.acceptClass {
+    color: #698750 !important;
+    background-color: #e1ffc5 !important;
+    border: #698750;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.refusedClass {
+    color: #973838!important;
+    background-color: #ffd3d3 !important;
+    border: #973838;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.partialAcceptClass {
+    color: #3e82a9 !important;
+    background-color: #d3f1ff !important;
+    border: #3e82a9;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.headerFont {
+    font-size: 19px;
+    color: black;
+}
+
+.subjectFont {
+    font-size: 18px;
+    color: #484848;
+}
+
+.example-spacer {
+    flex: auto;
+}

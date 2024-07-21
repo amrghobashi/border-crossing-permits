@@ -1,0 +1,38 @@
+.headerStyle {
+    font-size: large;
+    color: black;
+}
+
+.mat-row:hover {
+    background: rgb(127 199 123 / 20%);
+}
+
+.mat-row-is-clicked {
+    font-weight: bold;
+    background: rgb(127 199 123 / 20%);
+}
+
+.refusedItem {
+    background-color: antiquewhite;
+}
+
+.mat-elevation-z8 {
+    width: 97%;
+}
+
+tr.mat-header-row {
+    height: 56px;
+    background-color: whitesmoke;
+}
+
+.tableContainer{
+    width: 100%;
+}
+
+@media (max-width: 1150px) {
+    .tableContainer{
+        width: 100%;
+        position: relative;
+        overflow: auto;
+    }
+  }

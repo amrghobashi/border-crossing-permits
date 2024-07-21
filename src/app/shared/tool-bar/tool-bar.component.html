@@ -1,0 +1,81 @@
+<mat-toolbar class="position-fixed">
+    <mat-toolbar-row style="color: white;">
+
+        <!-- <button mat-raised-button style="font-size: 18px; background-color: #e3e3e3; color: black;" (click)="logout()">
+            <mat-icon style="transform: rotate(180deg);">exit_to_app</mat-icon>
+        </button> -->
+
+        <button mat-icon-button [matMenuTriggerFor]="setting" >
+            <mat-icon >account_circle</mat-icon>
+            
+        </button>
+
+        <a class="company-name" style="cursor: pointer;" [matMenuTriggerFor]="setting" *ngIf="companyName.length >=42">...</a>
+        <p class="company-name" *ngIf="companyName" [matMenuTriggerFor]="setting" style="cursor: pointer; width: 23%; margin: 0;">مرحبا  {{companyName | slice:0:40}}</p>
+        <!-- <span class="example-spacer"></span>
+        <h1 style="font-size: 27px; margin: auto;">
+            <mat-icon style="transform: scale(-1,1);">local_shipping</mat-icon>
+            التصديق على العبور لشرق القناة
+        </h1> -->
+
+        <span class="example-spacer"></span>
+        <p *ngIf="adminFlag === 3" style="font-size: 30px; margin: 0;">المعابر الحدودية</p>
+        <!-- <span class="example-spacer"></span> -->
+        <button mat-icon-button [matMenuTriggerFor]="setting2" class="small-screen" *ngIf="adminFlag === 1 || adminFlag === 4">
+            <mat-icon >menu</mat-icon>
+        </button>
+        <!-- <span class="menu-spacer"></span> -->
+
+        <div class="large-screen" >
+            <a *ngIf="adminFlag === 1 || adminFlag === 4" mat-button class="btnClass" [routerLink]="'/inquiry'" routerLinkActive="active">
+                <mat-icon>search</mat-icon> إستعلام
+             </a>
+            <a *ngIf="adminFlag === 1" mat-button class="btnClass" [routerLink]="'/notification'" routerLinkActive="active">
+                <mat-icon>notifications</mat-icon> الإشعارات
+             </a>
+            <a *ngIf="adminFlag === 1" mat-button class="btnClass" [routerLink]="'/company'" routerLinkActive="active">
+                <mat-icon>group</mat-icon> الشركات
+             </a>
+            <a *ngIf="adminFlag === 1" mat-button class="btnClass" [routerLink]="'/export-import'" routerLinkActive="active">
+                <mat-icon>import_export</mat-icon> إستخراج ورفع الملفات 
+            </a>
+        </div>
+
+        <mat-menu #setting2="matMenu" class="small-screen">
+            <a *ngIf="adminFlag === 1 || adminFlag === 4" mat-button class="menuClass" [routerLink]="'/inquiry'" routerLinkActive="active">
+                <mat-icon>search</mat-icon> إستعلام
+             </a>
+            <a *ngIf="adminFlag === 1" mat-button class="menuClass" [routerLink]="'/notification'" routerLinkActive="active">
+                <mat-icon>notifications</mat-icon> الإشعارات
+             </a>
+            <a *ngIf="adminFlag === 1" mat-button class="menuClass" [routerLink]="'/company'" routerLinkActive="active">
+                <mat-icon>group</mat-icon> الشركات
+             </a>
+            <a *ngIf="adminFlag === 1" mat-button class="menuClass" [routerLink]="'/export-import'" routerLinkActive="active">
+                <mat-icon>import_export</mat-icon> إستخراج ورفع الملفات 
+            </a>
+        </mat-menu>
+
+
+
+        <mat-menu #setting="matMenu" style="background-color: #0e0d0d;">
+            <button mat-menu-item style="text-align: right; font-size: large;" (click)="openPassModal()">
+                <!-- <mat-icon style="transform: rotate(180deg); margin: 0;">exit_to_app</mat-icon> -->
+                <mat-icon style="margin: 0;">lock_open</mat-icon>
+                تغيير كلمة المرور
+            </button>
+            <button mat-menu-item style="text-align: right; font-size: large;" (click)="logout()">
+                <mat-icon style="transform: rotate(180deg); margin: 0;">exit_to_app</mat-icon>
+                تـسـجــيـل الـخـــروج 
+            </button>
+            <!-- <a mat-menu-item style="text-align: right; font-size: large;">تغيير كلمة المرور </a> -->
+        </mat-menu>
+    </mat-toolbar-row>
+    <!-- (click)="selectedClass('inquiry')" [ngClass]="{'btnSelected': selected === 'inquiry' , 'btnClass':  selected != 'inquiry'}" -->
+
+</mat-toolbar>
+<br><br><br><br>
+<!-- <marquee  behavior="loop" direction="right" scrolldelay="100" style="font-size: large;">
+    {{notifName}}
+</marquee> -->
+<app-marquee></app-marquee>

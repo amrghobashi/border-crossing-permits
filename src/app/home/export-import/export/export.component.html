@@ -1,0 +1,57 @@
+<br><br>
+<mat-stepper linear #stepper dir="rtl">
+    <mat-step [editable]="false" [completed]="selectedIndex > 0">
+        <ng-template matStepLabel> إستخراج ملف الطلبات </ng-template>
+        <div *ngIf="!isLoading else loading" style="text-align: center; font-size: x-large;">
+            <div *ngIf="isLoading">
+                <ng-template>
+                    <mat-spinner style="margin-inline: auto;"></mat-spinner>
+                </ng-template>
+            </div>
+            <div *ngIf="!isLoading">
+                <a mat-button mat-button *ngIf="selectedIndex !== 1 && zeroReq === false"
+                (click)="exportRequests()" 
+                class="btnClass">إستخراج
+                <mat-icon>archive</mat-icon> 
+                </a>
+                <button mat-button style="background-color: #dddddd; font-size: large;" *ngIf="selectedIndex === 1" matStepperNext>التالي
+                    <mat-icon style="transform: scale(-1,1);">queue_play_next</mat-icon>
+                </button>
+                <div *ngIf="zeroReq === true">
+                    <p style="text-align: center; font-size: x-large;">لا يوجد طلبات جديدة</p>
+                </div>
+            </div>
+        </div>
+    </mat-step>
+
+    <mat-step [editable]="false" [completed]="selectedIndex > 1">
+            <ng-template matStepLabel>إستخراج ملف الأصناف</ng-template>
+            <div *ngIf="!isLoading else loading" style="text-align: center; font-size: x-large;">
+                <a mat-button mat-button *ngIf="selectedIndex !== 2"
+                    (click)="exportItems()" 
+                    class="btnClass">
+                    <mat-icon>archive</mat-icon> إستخراج
+                 </a>
+                 <button mat-button style="background-color: #dddddd; font-size: large;" *ngIf="selectedIndex === 2" matStepperNext>التالي
+                    <mat-icon style="transform: scale(-1,1);">queue_play_next</mat-icon>
+               </button>
+            </div>
+    </mat-step>
+
+    <mat-step [editable]="false" [completed]="selectedIndex > 2">
+        <ng-template matStepLabel>تأكيد إستخراج الملفات </ng-template>
+        <div *ngIf="!isLoading else loading">
+            <p *ngIf="isValid" style="text-align: center; font-size: x-large;">تهانينا لقد انتهيت من إستخراج الملفات</p>
+            <div *ngIf="!isValid" style="text-align: center; font-size: x-large;">
+                <a mat-button mat-button class="btnClass" (click)="confirmExport()">تأكيد الإستخراج
+                    <mat-icon>check_circle</mat-icon>
+                </a>
+            </div>
+        </div>
+    </mat-step>
+</mat-stepper>
+
+
+<ng-template #loading>
+    <mat-spinner style="margin-inline: auto;"></mat-spinner>
+</ng-template>

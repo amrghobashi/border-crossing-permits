@@ -1,0 +1,25 @@
+<br><br>
+<!-- <div style="min-height: 83vh; position: relative;"> -->
+    <mat-card dir="rtl" class="example-card"
+    style="margin: auto; border-radius: 8px; width: 70%; height: auto; background-color: #f9f9f9;">
+    <br>
+    <h1 style="text-align: center; font-size: 30px; font-weight: bold;"> إستخراج ورفع الملفات 
+        <mat-icon style="font-size: 100%;">import_export</mat-icon>
+    </h1>
+    <div style="width: 85%; margin: auto; border-radius: 20px; background-color: white;">
+        <nav mat-tab-nav-bar ngClass="tabs" (selectedTabChange)="getCount()" mat-align-tabs="center" dir="rtl" dynamicHeight style="font-size: large;" >
+        <a mat-tab-link *ngFor="let link of tabLinks"
+            routerLink="{{ link.path }}"
+            (click)="activelink = link.path; getCount();"
+            [active]="activelink == link.path"
+            style="font-size: large;">
+            <span matBadge="{{ link.count }}" matBadgeColor="warn">{{ link.label }}</span>
+        </a>
+    </nav>
+    <router-outlet></router-outlet>
+</div>
+</mat-card>
+<!-- </div> -->
+
+<!-- <div style="height: 46%;"></div> -->
+<app-footer></app-footer>

@@ -1,0 +1,45 @@
+<div class="form-wraper">
+  <!-- <br><br><br><br><br><br> -->
+  <div class="form-container card">
+    <div class="form-header">
+      <h1 style="text-align: center; font-family: Tajawal-Bold; font-size: revert;">المعابر الحدودية</h1>
+      <!-- <img src="./../../assets/gif/4.gif"  class="main-lock-icon" alt=""> -->
+    </div>
+    <form (ngSubmit)="login()" [formGroup]="loginFormGroup" #formDirective="ngForm" class="example-form">
+      <div class="form-body" dir="rtl">
+        <mat-form-field class="justifier">
+            <input matInput placeholder="البريد الإلكتروني" formControlName="email" type="email" required class="form-input" style="width: 90%;">
+            <mat-icon style="width: 10%; text-align: start;">person</mat-icon>
+            <mat-error *ngIf="this.loginFormGroup.get('email')?.hasError('email')">من فضلك أدخل بريد إلكتروني صحيح</mat-error>
+        </mat-form-field>
+        <mat-form-field class="justifier">
+            <input matInput (keyup.enter)="login()" placeholder="كلمة المرور" formControlName="password" [type]="hide ? 'password' : 'text'" required class="form-input"
+              style="width: 90%;">
+            <mat-icon style="width: 10%; text-align: start;"  (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-hint *ngIf="invalidUser" style="font-size: 1.1em; color: red;">* من فضلك تأكد من إسم المستخدم وكلمة المرور</mat-hint>
+            <br>
+        </mat-form-field>
+      </div>
+    </form>
+
+    <div  class="form-footer">
+      <div *ngIf="flag === false">
+        <button (click)="login()" mat-raised-button class="btn custom-btn"> 
+          <mat-icon>input</mat-icon> تسجيل الدخول
+        </button>
+        <hr>
+        <button mat-raised-button class="btn" (click)="openPdf()"> 
+          <!-- <img src="./../../assets/search.svg" alt="" class="google-icon">  -->
+          دليل مستخدم جديد
+        </button>
+      </div>
+
+      <div *ngIf="flag === true">
+        <img src="./../../assets/gif/7.gif"  class="login-lock-icon" alt="">
+      </div>
+    </div>
+    <!-- <div class="additional-link">
+      <a routerLink="/signup">No Account? <strong>Create one here</strong></a>
+    </div> -->
+  </div>
+</div>

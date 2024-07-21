@@ -1,0 +1,47 @@
+
+.headerStyle {
+    font-size: large;
+    color: black;
+}
+
+.mat-row:hover {
+    background: rgb(127 199 123 / 20%);
+}
+
+.mat-row-is-clicked {
+    font-weight: bold;
+    background: rgb(127 199 123 / 20%);
+}
+
+.mat-elevation-z8 {
+    width: 97%;
+}
+
+tr.mat-header-row {
+    height: 56px;
+    background-color: whitesmoke;
+}
+
+.mat-slide-toggle.mat-warn.mat-checked .mat-slide-toggle-bar {
+    background-color: rgb(140 205 181);
+}
+
+.mat-slide-toggle.mat-warn.mat-checked .mat-slide-toggle-thumb {
+    background-color: #2b8b68 !important;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #2b8b68;
+}
+
+.tableContainer{
+    width: 100%;
+}
+
+@media (max-width: 1150px) {
+    .tableContainer{
+        width: 100%;
+        position: relative;
+        overflow: auto;
+    }
+}

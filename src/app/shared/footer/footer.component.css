@@ -1,0 +1,36 @@
+footer {
+    clear: both;
+    margin-top: 38px;
+    height: 35px;
+    position: sticky;
+    top: 100%;
+    background-color: #c3c3c3;
+    width: 100%;
+    bottom: 0px;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p-footer {
+    height: 30%;
+    color: #454545;
+}
+
+@media (max-width: 483px) {
+    footer {
+        margin-top: 46px;
+        height: 58px;
+    }
+    .p-footer {
+        height: 45%;
+    }
+}
+
+@media (max-width: 280px) {
+    footer {
+        font-size: 16px;
+    }
+}

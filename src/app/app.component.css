@@ -1,0 +1,36 @@
+body {
+    min-height: 100%;
+}
+.mat-step-icon-selected
+/* , .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit */
+{
+    background-color: #2b8b68 !important;
+}
+
+.mat-step-header .mat-step-label .mat-step-text-label {
+    font-size: large;
+}
+
+.mat-step-icon-state-done {
+    background-color: #428f738a  !important;
+}
+
+.mat-step-icon-state-edit {
+    background-color: #428f738a  !important;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #2b8b68;
+}
+
+.mat-step-header .mat-step-label .mat-step-text-label {
+    font-size: medium !important;
+}
+
+* {
+    font-family: Tajawal-Bold, "Helvetica Neue", sans-serif;
+}
+
+.mat-h1, .mat-headline, .mat-typography .mat-h1, .mat-typography .mat-headline, .mat-typography h1 {
+    font-family: Tajawal-Bold, "Helvetica Neue", sans-serif;
+}

@@ -1,0 +1,7 @@
+{
+    "/api":{
+        "target":"http://localhost/passApi/public",
+        "secure":false,
+        "changeOrigin":true
+    }
+}

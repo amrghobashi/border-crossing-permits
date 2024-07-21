@@ -1,0 +1,12 @@
+.btnClass {
+    font-size: large;
+    /* background-color: #36ad82; */
+    background-color: #228561;
+    color: white;
+    margin: 10px;
+}
+
+a.btnClass:hover {
+    /* background-color: #1b5e46; */
+    background-color: #36ad82;
+}

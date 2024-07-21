@@ -1,0 +1,83 @@
+.position-fixed {
+    background: #2b8b68;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.example-spacer {
+    flex: auto;
+}
+
+.btnClass  {
+    font-size: large;
+}
+
+.active {
+    background: #164c39;
+}
+
+a.btnClass:hover {
+    background-color: #1b5e46;
+}
+
+.menuClass  {
+    font-size: large;
+    display: grid;
+}
+
+a.menuClass:hover {
+    background-color: #bfdfd4;
+}
+
+.company-name {
+    margin: auto;
+}
+
+.large-screen {
+    display: block;
+}
+
+.small-screen {
+    display: none;
+}
+
+button {
+    font-family: Tajawal-Bold, "Helvetica Neue", sans-serif;
+}
+
+@media (max-width: 720px) {
+    .company-name {
+        display: none;
+    }
+
+  }
+
+  @media (max-width: 960px) {
+    .active {
+        background: #bfdfd4;
+    }
+    .large-screen {
+        display: none;
+    }
+    .small-screen {
+        display: block;
+    }
+  }
+
+/* .example-container {
+    width: 500px;
+    height: 300px;
+    border: 1px solid black;
+}
+
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-sidenav {
+    padding: 20px;
+} */

@@ -1,0 +1,55 @@
+<h1 *ngIf="!data.image" mat-dialog-title style="text-align: center;">{{ data.msg }}</h1>
+<!-- <div mat-dialog-content>{{ data.msg }}</div> -->
+<div *ngIf="!data.image && data.type == 'delete'">
+    <!-- <button mat-button (click)="onNoClick()">إلغاء</button>
+    <button mat-button [mat-dialog-close]="confirmDelete()" cdkFocusInitial>نعم</button> -->
+
+    <button mat-raised-button type="button" (click)="onNoClick()" style="background-color: #ededed; width: 48%; margin: 1%;"> 
+        <mat-icon>close</mat-icon>  إلغاء
+    </button>
+    <button mat-raised-button [mat-dialog-close]="confirmDelete()" style="background-color: #ededed; width: 48%; margin: 1%;"> 
+        <mat-icon>check</mat-icon>  تأكيد
+    </button>
+</div>
+
+<img *ngIf="data.image && data.type == 'upload'" oncontextmenu="return false;" [src]="data.msg" class="image-class">
+
+
+<div *ngIf="!data.image && data.type == 'pwd'">
+    <form (ngSubmit)="submitNewPassword()" [formGroup]="passwordFormGroup" #formDirective="ngForm" class="example-form">
+        <div class="form-body" dir="rtl">
+            <mat-form-field style="width: 100%;">
+                <input matInput placeholder="كلمة المرور القديمة " formControlName="oldPassword" [type]="hide1 ? 'password' : 'text'" required class="form-input"
+                style="width: 90%; font-size: 1.4em;">
+                <mat-icon style="width: 10%; text-align: start;"matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <!-- <mat-hint *ngIf="invalidUser" style="font-size: 1.4em; color: red;">* من فضلك تأكد من كلمة المرور</mat-hint><br> -->
+            </mat-form-field>
+            <br *ngIf="!invalidUser else invalid">
+            <!-- <div *ngIf="!invalidUser else invalid"></div> -->
+            <mat-form-field style="width: 100%;">
+                <input matInput placeholder="كلمة المرور الجديدة" formControlName="newPassword" [type]="hide2 ? 'password' : 'text'" required class="form-input"
+                style="width: 90%; font-size: 1.4em;">
+                <mat-icon style="width: 10%; text-align: start;" matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+            <mat-form-field style="width: 100%;">
+                <input matInput placeholder="تأكيد كلمة المرور" formControlName="confirmNewPassword" [type]="hide3 ? 'password' : 'text'" required class="form-input"
+                style="width: 90%; font-size: 1.4em;">
+                <mat-icon style="width: 10%; text-align: start;"matSuffix (click)="hide3 = !hide3">{{hide3 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-hint *ngIf="notIdentical" style="font-size: 1.4em; color: red;">* كلمة المرور الجديدة غير متطابقة</mat-hint>
+            </mat-form-field>
+        </div>
+        <br>
+        <div>
+            <button mat-raised-button type="button" (click)="onNoClick()" style="background-color: #ededed; width: 48%; margin: 1%;"> 
+                <mat-icon>close</mat-icon> إلغاء 
+            </button>
+            <button mat-raised-button style="background-color: #ededed; width: 48%; margin: 1%;"> 
+                <mat-icon>check</mat-icon> تأكيد 
+            </button>
+        </div>
+    </form>
+</div>
+
+<ng-template #invalid>
+    <mat-hint style="font-size: 1.2em; color: red;">* من فضلك تأكد من كلمة المرور</mat-hint><br>
+</ng-template>
