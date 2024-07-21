@@ -9,8 +9,6 @@ import { ImportComponent } from './import/import.component';
 
 
 const requestRoutes: Routes = [
-    // { path: '', redirectTo: 'requests', pathMatch: 'full'},
-    // { path: 'requests', redirectTo: 'requests/pending-requests', pathMatch: 'full'},
     { path: '', component: ExportImportComponent, canActivate:[AuthGuard],
         canActivateChild:[AuthGuard],
         children: [
@@ -20,7 +18,6 @@ const requestRoutes: Routes = [
         {path: 'import-user', component: ImportUserComponent},
         ]
     },
-    // { path: '', redirectTo: 'export', pathMatch: 'full'},
     { path: '**', redirectTo: 'export', pathMatch: 'full'},
   ];
 

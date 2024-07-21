@@ -2,22 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DialogComponent } from '../shared/dialog/dialog.component';
 import { SharedService } from '../shared/shared.service';
 import { LoginService } from './login.service';
-import { AuthResponseData, User } from './user';
-// import {MatDialog} from '@angular/material'
+import { AuthResponseData } from './user';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {  
+export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private _formBuilder: FormBuilder, private loginService: LoginService, private sharedService: SharedService,
+  constructor(private router: Router, private _formBuilder: FormBuilder, private loginService: LoginService,
     public dialog: MatDialog) { }
 
   subscription: Subscription = new Subscription;
@@ -36,29 +35,23 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  login() : void {
-    if(this.loginFormGroup.valid){
+  login(): void {
+    if (this.loginFormGroup.valid) {
       let data = this.loginFormGroup.value;
-      // console.log(data);
       this.loginService.login(data).subscribe(value => {
         this.authData = value;
-        // this.flag = true;
-        // setTimeout(() => {
-          if(this.authData.admin_flag === 3) {
-            this.router.navigateByUrl('requests/pending-requests');
-          }
-          else if(this.authData.admin_flag === 1) {
-            this.router.navigateByUrl('export-import/export');
-          }
-          else if(this.authData.admin_flag === 4) {
-            this.router.navigateByUrl('inquiry');
-          }
-          else if(this.authData.admin_flag === 2) {
-            this.router.navigateByUrl('msdc-inquiry');
-          }
-          // this.flag = false;
-        // }, 3000)
-        // }
+        if (this.authData.admin_flag === 3) {
+          this.router.navigateByUrl('requests/pending-requests');
+        }
+        else if (this.authData.admin_flag === 1) {
+          this.router.navigateByUrl('export-import/export');
+        }
+        else if (this.authData.admin_flag === 4) {
+          this.router.navigateByUrl('inquiry');
+        }
+        else if (this.authData.admin_flag === 2) {
+          this.router.navigateByUrl('msdc-inquiry');
+        }
         else this.router.navigateByUrl('login');
       })
     }
@@ -71,17 +64,8 @@ export class LoginComponent implements OnInit {
     }, 1200)
   }
 
-  openPdf() {
-    // window.open("./../../assets/new_user.pdf", "_blank")
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '800px',
-      height: '800px',
-      data: {
-        msg: './../../assets/newUser.JPG',
-        image: true,
-        type: "upload"
-      }
-    });
-  }
-  }
+}

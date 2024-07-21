@@ -9,14 +9,18 @@ import { SharedService } from '../shared.service';
 })
 export class ConfirmMessageComponent implements OnInit {
 
-  supscription: Subscription = new Subscription;
+  subscription: Subscription = new Subscription;
   msg: string = '';
   constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
-    this.supscription = this.sharedService.msg.subscribe(value => {
+    this.subscription = this.sharedService.msg.subscribe(value => {
       this.msg = value
     })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

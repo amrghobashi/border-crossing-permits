@@ -7,23 +7,15 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class FileUploaderService {
-  
+
   constructor(private http: HttpClient) { }
   private API_URL = environment.API_URL;
   private baseUrl = this.API_URL;
 
   upload(file: any): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
-
     formData.append('file', file);
-
-    // let imgForm = new FormData();
-    // imgForm.append('testInput', 'test');
-    // imgForm.append('testimg', file, file.name);
-    // console.log("service")
-    // console.log(imgForm.get('testimg'))
-
-    const req = new HttpRequest('POST', this.API_URL+'uploadImg', file, {
+    const req = new HttpRequest('POST', this.API_URL + 'uploadImg', file, {
       reportProgress: true,
       responseType: 'json'
     });
@@ -36,10 +28,10 @@ export class FileUploaderService {
   }
 
   getImages(id: number) {
-    return this.http.get(this.API_URL+'get_images/' +id);
+    return this.http.get(this.API_URL + 'get_images/' + id);
   }
 
   deleteImage(path: any) {
-    return this.http.post(this.API_URL+'delete_image', path);
+    return this.http.post(this.API_URL + 'delete_image', path);
   }
 }

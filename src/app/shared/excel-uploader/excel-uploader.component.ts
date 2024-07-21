@@ -29,19 +29,20 @@ export class ExcelUploaderComponent implements OnInit {
   fileSrc = '';
 
 
-  constructor(private excelUploaderService: ExcelUploaderService, private _formBuilder: FormBuilder, private sharedService: SharedService, private _snackBar: MatSnackBar) { }
+  constructor(private excelUploaderService: ExcelUploaderService, private _formBuilder: FormBuilder,
+    private sharedService: SharedService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     if(this.uploadType === 'requests') {
-      this.confirmMsg = ' طلب ';
+      this.confirmMsg = ' request ';
       this.url = 'import_requests';
     }
     else if(this.uploadType === 'items'){
-      this.confirmMsg = ' صنف ';
+      this.confirmMsg = ' item ';
       this.url = 'import_items';
     }
     else {
-      this.confirmMsg = ' مستخدم ';
+      this.confirmMsg = ' user ';
       this.url = 'import_users';
     }
   }
@@ -53,7 +54,6 @@ export class ExcelUploaderComponent implements OnInit {
       this.fileName = this.currentFile.name;
       this.excelForm = new FormData();
       this.message = '';
-      // this.imgForm.append('request_id', this.requestNo.toString());
       this.excelForm.append('file', file, file.name);
       this.progress = 0;
     } else {
@@ -67,27 +67,23 @@ export class ExcelUploaderComponent implements OnInit {
     if (this.currentFile) {
       this.excelUploaderService.upload(this.excelForm, this.url).subscribe(
         (event: any) => {
-          // if (event.type === HttpEventType.UploadProgress) {
-          //   this.progress = Math.round(100 * event.loaded / event.total);
-          // }
            if (event instanceof HttpResponse) {
-            // console.log(event.body.message);
             if(event.body.message == "NOTEXCEL") {
               this.currentFile = undefined;
               this.progress = 0;
               this.uploadDone = false;
-              this.message = "نوع الملف يجب أن يكون (xlsx)";
+              this.message = "file format must be (xlsx)";
             }
             else if(event.body.message == "ERROR"){
               this.currentFile = undefined;
               this.progress = 0;
               this.uploadDone = false;
-              this.message = 'لم يتم رفع الملف, يرجى المحاولة مرة أخرى';
+              this.message = 'file not uploaded, please try again later.';
             }
             else{
               this.uploadDone = true;
               this.fileName = '';
-              this.openConfirmMsg("تم رفع عدد "+event.body['count'] + this.confirmMsg + " بنجاح");
+              this.openConfirmMsg(event.body['count'] + this.confirmMsg + " files has been uploaded successfully");
             }
           }
           if (event.type === HttpEventType.UploadProgress && !event.body) {
@@ -95,17 +91,15 @@ export class ExcelUploaderComponent implements OnInit {
           }
         },
         (err: any) => {
-          // console.log(err);
           this.currentFile = undefined;
           this.progress = 0;
 
           if(err.error && err.error.message == "Undefined index: request_id") {
             this.uploadDone = false;
-            this.message = "تأكد من رفع الملف الصحيح";
+            this.message = "please be sure from uploading the correct file format";
           } else {
-            // console.log("else")
             this.uploadDone = false;
-            this.message = 'لم يتم رفع الملف, يرجى المحاولة مرة أخرى';
+            this.message = 'file not uploaded, please try again later.';
           }
 
         });

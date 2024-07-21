@@ -1,6 +1,6 @@
 {
     "/api":{
-        "target":"http://localhost/passApi/public",
+        "target":"http://localhost/permitsApi/public",
         "secure":false,
         "changeOrigin":true
     }

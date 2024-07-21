@@ -1,17 +1,11 @@
-/* .mat-grid-tile-content {
-    height: fit-content !important;
-} */
-
 .mat-tab-label {
     font-size: large;
 }
 
 .toggleButton {
     border-radius: 8px;
-    /* border: black; */
     border-color: #a3a3a3;
     border-width: thin;
-    /* box-shadow: none; */
 }
 
 .acceptClass {
@@ -76,10 +70,7 @@
 
 @media (max-width: 1122px) {
     .matCard{
-        /* margin: 1% auto;
-        border-radius: 8px; */
         height: auto; width: 94%;
-        /* float: left;  */
     }
   }
 

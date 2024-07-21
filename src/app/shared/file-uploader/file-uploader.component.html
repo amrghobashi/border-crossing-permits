@@ -2,10 +2,9 @@
   <div>
     <div style="text-align: center; ">
       <form [formGroup]="imgFormGroup" (ngSubmit)="onSubmitFile()" style="margin: auto;">
-        <!-- <input type="hidden" name="size" value="10000000"> -->
         <input type="file" (change)="onSelectFile($event)" accept="image/png, image/jpg, image/jpeg">
         <button *ngIf="fileName !== '' " mat-flat-button style="background-color: #2b8b68; color: white;"
-          type="submit">رفع الصورة
+          type="submit">upload image
           <mat-icon>cloud_upload</mat-icon>
         </button>
       </form>
@@ -23,17 +22,17 @@
     {{ message }}
   </div>
 </div>
-<div *ngIf="images !== 0 else noImgMsg"  >
+<div *ngIf="images !== 0 else noImgMsg">
   <div *ngIf="!isLoading else loading" class="containerCard">
     <mat-card *ngFor="let image of images" dir="rtl" class="matCard">
       <mat-card-content>
-        <img mat-card-image class="imgClass" style="cursor: zoom-in;" (click)="openImage(fileSrc + '/' + image.image_name)"
-        [src]="fileSrc + '/' + image.image_name"
-        mat-card-xl-image
-        >
+        <img mat-card-image class="imgClass" style="cursor: zoom-in;"
+          (click)="openImage(fileSrc + '/' + image.image_name)" [src]="fileSrc + '/' + image.image_name"
+          mat-card-xl-image>
       </mat-card-content>
       <mat-card-actions *ngIf="addImgFlag" dir="ltr" style="text-align: center; ">
-        <button mat-mini-fab color="warn" style="margin: auto;" (click)="deleteImage(requestNo + '/' + image.image_name)">
+        <button mat-mini-fab color="warn" style="margin: auto;"
+          (click)="deleteImage(requestNo + '/' + image.image_name)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-card-actions>
@@ -42,7 +41,7 @@
 </div>
 
 <ng-template #noImgMsg>
-  <p class="subjectFont"><b>لا يوجد مرفقات  </b></p>
+  <p class="subjectFont"><b>there are no files.</b></p>
 </ng-template>
 
 <ng-template #loading>

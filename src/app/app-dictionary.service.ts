@@ -5,10 +5,6 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class AppDictionaryService {
-
-  // This service contains all the static mappings.
-  //  This is not the central data store and hence, does not store the application state.
-
   error_messages = {
     service_failure: 'Our apologies, this site is experiencing some technical difficulties. Please refresh the page or try again.',
     validation: {
@@ -28,12 +24,10 @@ export class AppDictionaryService {
     'table_row_edit': 'table_row_edit'
   };
 
-  // Mapping website host with API host
   API_hosts: { [key:string]: string } = {
     'dummyhost': 'dummyhost:8080/AppName/'
   };
 
-  // Mapping website host with environment if needed by the API
   environment_mapping = {
     'localhost' : 'DEV'
   };
@@ -43,11 +37,8 @@ export class AppDictionaryService {
   };
 
   constructor() { 
-    // For our sample application here, we have simply considered any environment
-    // setting "dummy_JSONs" to use the JSON files instead of backend API
     if(!environment.dummy_JSONs){
       let api_host = this.API_hosts[document.location.hostname];
-      // The API application name wil be as per the backend host
       this.settings.API_full_hostname = document.location.protocol+"//"+api_host;
     }
   }

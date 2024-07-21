@@ -4,23 +4,26 @@
     <br>
     <div style="width: 80%; margin: auto;" class="mat-elevation-z8">
         <br>
-        <h1 style="text-align: center; font-size: 30px; font-weight: bold;">الإشعارات
+        <h1 style="text-align: center; font-size: 30px; font-weight: bold;">notifications
             <mat-icon style="font-size: 100%;">notifications</mat-icon>
         </h1>
-        <div class="example-container" >
+        <div class="example-container">
             <br>
             <form *ngIf="!isLoading else loading" (ngSubmit)="updateNotif() " [formGroup]="firstFormGroup">
                 <div>
                     <mat-form-field style="margin-left: 1%; margin-right: 1%; width:96%;" appearance="fill">
-                        <mat-label>الإشعارات </mat-label>
-                        <textarea matInput formControlName="notification" placeholder="الإشعارات التي تريد ظهورها للشركات " style="font-size: large; min-height: 90px;"></textarea>
+                        <mat-label>notifications</mat-label>
+                        <textarea matInput formControlName="notification"
+                            placeholder="notifications to be shown to the users"
+                            style="font-size: large; min-height: 90px;">
+                        </textarea>
                     </mat-form-field>
-                    
+
                 </div>
                 <br>
                 <mat-action-row style="justify-content: space-between;">
-                    <button  mat-raised-button  style="font-size: large; background-color: #f5f5f5; margin: 10px;">
-                        حفظ 
+                    <button mat-raised-button style="font-size: large; background-color: #f5f5f5; margin: 10px;">
+                        save
                     </button>
                 </mat-action-row>
             </form>

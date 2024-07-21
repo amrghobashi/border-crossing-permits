@@ -2,31 +2,25 @@
 <mat-card dir="rtl" class="example-card"
     style="margin: auto; border-radius: 8px; width: 70%; height: auto; background-color: #f9f9f9;">
     <br>
-    <h1 style="text-align: center; font-size: 30px; font-weight: bold;">إستعلام
+    <h1 style="text-align: center; font-size: 30px; font-weight: bold;">inquiry
         <mat-icon style="font-size: 100%;">search</mat-icon>
     </h1>
-    <div >
+    <div>
         <form *ngIf="!detailStatus else detail" (ngSubmit)="searchReq()" [formGroup]="firstFormGroup"
             style="margin: auto; text-align: center;">
-            <!-- <div> -->
             <mat-form-field style="margin-left: 1%; margin-right: 1%; width:15%;" dir="ltr" appearance="fill">
-                <mat-label>بحث برقم الطلب</mat-label>
-                <input type="number" matInput formControlName="search" placeholder="رقم الطلب">
+                <mat-label>search with request number</mat-label>
+                <input type="number" matInput formControlName="search" placeholder="request number">
             </mat-form-field>
-            <!-- </div>
-                <br>
-                <mat-action-row style="justify-content: space-between;"> -->
-                    <button type="submit" mat-raised-button
-                    style="font-size: large; background-color: #f5f5f5; margin: 10px;"
-                    (keyup.enter)="searchReq()">بحث
-                </button>
-                <!-- </mat-action-row> -->
-            </form>
-            <p *ngIf="this.wrongNo === true" style="text-align: center; color: #db0f00; font-size: large;" > رقم الطلب غير صحيح !</p>
-            <!-- *ngIf="this.wrongNo === true" -->
+            <button type="submit" mat-raised-button style="font-size: large; background-color: #f5f5f5; margin: 10px;"
+                (keyup.enter)="searchReq()">search
+            </button>
+        </form>
+        <p *ngIf="this.wrongNo === true" style="text-align: center; color: #db0f00; font-size: large;">
+            request number is incorrect
+        </p>
     </div>
 </mat-card>
-<!-- <div style="max-height: 61.3%;"></div> -->
 <app-footer></app-footer>
 
 <ng-template #detail>

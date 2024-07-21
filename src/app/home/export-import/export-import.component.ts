@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ExportImportService } from './export-import.service';
-import { ExportService } from './export/export.service';
 
 @Component({
   selector: 'app-export-import',
@@ -21,18 +20,19 @@ export class ExportImportComponent implements OnInit {
     this.getCount();
   }
 
-  tabLinks = [{'path': 'export', 'label': 'إستخراج ملف الطلبات والأصناف', 'count': ''},
-  {'path': 'import', 'label': 'رفع ملف الطلبات والأصناف ', 'count': ''},
-  {'path': 'import-user', 'label': 'رفع ملف المستخدمين ', 'count': ''}];
+  tabLinks = [
+    { 'path': 'export', 'label': 'export requests files', 'count': '' },
+    { 'path': 'import', 'label': 'export items files', 'count': '' },
+    { 'path': 'import-user', 'label': 'export new users files', 'count': '' }
+  ];
 
-  // activelink = this.router.url.replace("/export-import/", "");
   activelink = this.router.url.replace("/export-import/", "");
 
   getCount() {
     this.subscription = this.exportImportService.getCount();
     this.subscription = this.exportImportService.requestCount.subscribe(data => {
       this.reqCount = data.toString();
-    this.tabLinks[0]['count'] = this.reqCount;
+      this.tabLinks[0]['count'] = this.reqCount;
     })
   }
 

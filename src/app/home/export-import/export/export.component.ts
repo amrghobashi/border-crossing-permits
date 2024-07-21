@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { SharedService } from 'src/app/shared/shared.service';
@@ -14,20 +14,11 @@ import { ExportImportService } from '../export-import.service';
   templateUrl: './export.component.html',
   styleUrls: ['./export.component.css']
 })
-export class ExportComponent extends ComponentCanDeactivate  {
+export class ExportComponent extends ComponentCanDeactivate {
   constructor(private exportService: ExportService, private exportImportService: ExportImportService, private sharedService: SharedService, private _snackBar: MatSnackBar) {
     super();
   }
 
-  // @HostListener('window:beforeunload', ['$event'])
-  // doSomething($event: any) {
-  //   if(this.isValid) $event.returnValue = 'sssssssss';
-  // }
-
-  // window.onbeforeunload = function() {
-  //   return "sssssssss"
-  // }
-  
   selectedIndex: number = 0;
   subscription: Subscription = new Subscription;
   isLoading = true;
@@ -35,7 +26,6 @@ export class ExportComponent extends ComponentCanDeactivate  {
   zeroReq = false;
 
   ngOnInit(): void {
-    // this.exportImportService.getCount()
     this.checkIfZero();
   }
 
@@ -44,53 +34,47 @@ export class ExportComponent extends ComponentCanDeactivate  {
   }
 
   downloadExcel(data: any, fileName: string): void {
-    // this.exportService.exportRequests().subscribe((data: any) => {
-      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
-      const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-      const blob = new Blob([XLSX.write(wb, { bookType: 'xlsx', type: 'buffer' })], {
-        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      });
-      saveAs(blob, fileName + '.xlsx');
-      this.isLoading = false;
-    // });
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    const blob = new Blob([XLSX.write(wb, { bookType: 'xlsx', type: 'buffer' })], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    });
+    saveAs(blob, fileName + '.xlsx');
+    this.isLoading = false;
   }
 
   exportRequests() {
     this.isLoading = true;
     this.subscription = this.exportService.exportRequests().subscribe(data => {
       const currentDate = this.getCurrentDate();
-      const name = "الطلبات-من-الإنترنت" + currentDate;
+      const name = "requests-file" + currentDate;
       this.downloadExcel(data, name);
       this.isValid = false;
       this.changeIndex(1);
-      // this.exportImportService.getCount();
-      this.openConfirmMsg("تم استخراج ملف الطلبات بنجاح");
+      this.openConfirmMsg("requests file exported successfully");
     })
   }
 
   exportItems() {
     this.isLoading = true;
     this.subscription = this.exportService.exportItems().subscribe(data => {
-      // console.log(data);
       const currentDate = this.getCurrentDate();
-      const name = "الأصناف-من-الإنترنت" + currentDate;
+      const name = "items-file" + currentDate;
       this.downloadExcel(data, name);
       this.isValid = false;
       this.changeIndex(2);
-      this.openConfirmMsg("تم استخراج ملف الأصناف بنجاح");
+      this.openConfirmMsg("items file exported successfully");
     })
   }
 
   confirmExport() {
     this.isLoading = true;
     this.subscription = this.exportService.confirmExport().subscribe(() => {
-      // console.log(data);
       const currentDate = this.getCurrentDate();
       this.isValid = true;
       this.isLoading = false;
-      // this.changeIndex(0);
-      this.openConfirmMsg("تم تأكيد الاستخراج بنجاح");
+      this.openConfirmMsg("exporting has done successfully");
       this.exportImportService.getCount();
     })
   }
@@ -102,9 +86,8 @@ export class ExportComponent extends ComponentCanDeactivate  {
     })
   }
 
-  canDeactivate():boolean {    
-    if(this.isValid === true)
-    {
+  canDeactivate(): boolean {
+    if (this.isValid === true) {
       return true;
     }
     return false;
@@ -121,7 +104,7 @@ export class ExportComponent extends ComponentCanDeactivate  {
 
   checkIfZero() {
     this.subscription = this.exportImportService.requestCount.subscribe(data => {
-      if(data == 0) {
+      if (data == 0) {
         this.zeroReq = true;
       }
       this.isLoading = false;

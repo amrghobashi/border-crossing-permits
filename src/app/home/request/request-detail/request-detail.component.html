@@ -1,63 +1,71 @@
 <div>
     <mat-card *ngIf="request else loading" dir="rtl" class="example-card" style="border-radius: 8px;height: auto;">
         <mat-card-title-group style="font-size: 1.3rem;">
-            <b style="font-size: 21px;">طلب رقم : {{ request.request_id }}</b> 
+            <b style="font-size: 21px;">request number : {{ request.request_id }}</b> 
             <span style="flex: auto;"></span>
-            <!-- <span class="menu-spacer"></span> -->
             <a mat-button (click)="goBack()" style="background-color: #e3e3e39e;">
                 <mat-icon>close</mat-icon>
             </a>
         </mat-card-title-group><br>
         <mat-stepper *ngIf="request.request_status_id && inquiryFlag === true" linear [selectedIndex]='request.request_status_id - 1' #stepper labelPosition="bottom">
-            <!-- <mat-step [hidden]="true" [editable]="false"></mat-step> -->
-
             <mat-step [completed]='request.request_status_id > 1 ? true: false' [editable]="false">
-                <ng-template matStepLabel>تحت الإنشاء</ng-template>
+                <ng-template matStepLabel>not placed</ng-template>
             </mat-step>
 
             <mat-step [completed]='request.request_status_id > 2 ? true: false' [editable]="false">
-                <ng-template matStepLabel>تم الإرسال</ng-template>
+                <ng-template matStepLabel>placed</ng-template>
             </mat-step>
 
             <mat-step [completed]='request.request_status_id > 3 ? true: false' [editable]="false">
-                <ng-template matStepLabel>قيد التنفيذ  </ng-template>
+                <ng-template matStepLabel>pending</ng-template>
             </mat-step>
 
             <mat-step [completed]='request.request_status_id >= 4 ? true: false' [editable]='false'>
-                <ng-template matStepLabel>تم الرد</ng-template>
+                <ng-template matStepLabel>finished</ng-template>
             </mat-step>
         </mat-stepper>
         <mat-card-content>
             <p *ngIf="request.company_name && inquiryFlag === true" class="subjectFont"><b class="headerFont">إسم الشركة :</b> {{ request.company_name }}</p>
-            <p *ngIf="request.company_msg;" class="subjectFont"><b class="headerFont">رسالة الرد : </b> {{ request.company_msg }} </p>
-            <p *ngIf="request.subject;" class="subjectFont"><b class="headerFont">الموضوع :</b> {{ request.subject }}</p>
-            <p *ngIf="request.pass_name;" class="subjectFont"><b class="headerFont">المعبر :</b> {{ request.pass_name }}</p>
-            <p *ngIf="request.request_date;" class="subjectFont"><b class="headerFont">بتاريخ :</b> {{ request.request_date | date: 'yyyy/MM/dd'}}</p>
-            <p *ngIf="request.address;" class="subjectFont"><b class="headerFont">العنوان :</b> {{ request.address }}</p>
-            <p *ngIf="request.r_notes;" class="subjectFont"><b class="headerFont">ملاحظات :</b> {{ request.r_notes }}</p>
-            <button *ngIf="request.amana_response_id !== 3" mat-raised-button disabled
-                [ngClass]="{'acceptClass': request.amana_response_id === 1,
-                'refusedClass': request.amana_response_id === 2,
-                'partialAcceptClass': request.amana_response_id === 4}">
-                {{request.amana_response_name}}
-                <mat-icon *ngIf="request.amana_response_id === 1">done_all</mat-icon>
-                <mat-icon *ngIf="request.amana_response_id === 2">close</mat-icon>
-                <mat-icon *ngIf="request.amana_response_id === 4">playlist_add_check</mat-icon>
+            <p *ngIf="request.company_msg;" class="subjectFont"><b class="headerFont">confirm message : </b>
+                {{ request.company_msg }}
+            </p>
+            <p *ngIf="request.subject;" class="subjectFont"><b class="headerFont">subject :</b>
+                {{ request.subject }}
+            </p>
+            <p *ngIf="request.pass_name;" class="subjectFont"><b class="headerFont">gate :</b>
+                {{ request.pass_name }}
+            </p>
+            <p *ngIf="request.request_date;" class="subjectFont"><b class="headerFont">date :</b>
+                {{ request.request_date | date: 'yyyy/MM/dd'}}
+            </p>
+            <p *ngIf="request.address;" class="subjectFont"><b class="headerFont">address :</b> 
+                {{ request.address }}
+            </p>
+            <p *ngIf="request.r_notes;" class="subjectFont"><b class="headerFont">notes :</b>
+                {{ request.r_notes }}
+            </p>
+            <button *ngIf="request.response_id !== 3" mat-raised-button disabled
+                [ngClass]="{'acceptClass': request.response_id === 1,
+                'refusedClass': request.response_id === 2,
+                'partialAcceptClass': request.response_id === 4}">
+                {{request.major_response_name}}
+                <mat-icon *ngIf="request.response_id === 1">done_all</mat-icon>
+                <mat-icon *ngIf="request.response_id === 2">close</mat-icon>
+                <mat-icon *ngIf="request.response_id === 4">playlist_add_check</mat-icon>
             </button>
         </mat-card-content>
         <app-items [requestNo]="requestNo" [isCompletedReq]="isCompletedReq"></app-items>
         <br><br>
-        <p class="subjectFont"><b class="headerFont">المرفقات :</b></p>
+        <p class="subjectFont"><b class="headerFont">files :</b></p>
         <app-file-uploader [requestNo]="requestNo" [addImgFlag]="false"></app-file-uploader>
         <mat-card-footer dir="ltr">
-            <button (click)="goBack()" mat-raised-button color="" style="font-size: large; background-color: #e3e3e3;margin: 10px;">
-                عوده
+            <button (click)="goBack()" mat-raised-button color=""
+                style="font-size: large; background-color: #e3e3e3;margin: 10px;">
+                back
             </button>
-            <!-- <button (click)="goBack()" mat-button style="font-size: large;">عوده</button> -->
         </mat-card-footer>
     </mat-card>
 </div>
-<!-- <mat-spinner></mat-spinner> -->
 
 <ng-template #loading>
     <mat-spinner style="margin-inline: auto;"></mat-spinner>

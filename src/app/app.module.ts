@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RequestComponent } from './home/request/request.component';
@@ -25,7 +24,7 @@ import { ToolBarComponent } from './shared/tool-bar/tool-bar.component';
 import { CompletedRequestComponent } from './home/request/completed-request/completed-request.component';
 import { NewRequestComponent } from './home/request/new-request/new-request.component';
 import { PendingRequestComponent } from './home/request/pending-request/pending-request.component';
-import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RequestDetailComponent } from './home/request/request-detail/request-detail.component';
 import { ItemsComponent } from './home/request/items/items.component';
@@ -51,9 +50,7 @@ import { AddItemComponent } from './home/request/new-request/add-item/add-item.c
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { AddExtraItemComponent } from './home/request/new-request/add-extra-item/add-extra-item.component';
 import { LoginComponent } from './login/login.component';
-// import { HomeComponent } from './home/home.component';
 import { FileUploaderComponent } from './shared/file-uploader/file-uploader.component';
-import { SidenavComponent } from './shared/sidenav/sidenav.component';
 import { ExportImportComponent } from './home/export-import/export-import.component';
 import { ExportComponent } from './home/export-import/export/export.component';
 import { ImportComponent } from './home/export-import/import/import.component';
@@ -63,10 +60,8 @@ import { ExcelUploaderComponent } from './shared/excel-uploader/excel-uploader.c
 import { CompanyComponent } from './home/company/company.component';
 import { NotificationComponent } from './home/notification/notification.component';
 import { InquiryComponent } from './home/inquiry/inquiry.component';
-import { MsdcInquiryComponent } from './home/msdc-inquiry/msdc-inquiry.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { MarqueeComponent } from './shared/marquee/marquee.component';
-// import { saveAs } from 'file-saver';
 
 
 @NgModule({
@@ -84,9 +79,7 @@ import { MarqueeComponent } from './shared/marquee/marquee.component';
     DialogComponent,
     AddExtraItemComponent,
     LoginComponent,
-    // HomeComponent,
     FileUploaderComponent,
-    SidenavComponent,
     ExportImportComponent,
     ExportComponent,
     ImportComponent,
@@ -95,7 +88,6 @@ import { MarqueeComponent } from './shared/marquee/marquee.component';
     CompanyComponent,
     NotificationComponent,
     InquiryComponent,
-    MsdcInquiryComponent,
     FooterComponent,
     MarqueeComponent
   ],
@@ -142,8 +134,7 @@ import { MarqueeComponent } from './shared/marquee/marquee.component';
   ],
   exports: [],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true},
-    // { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
     CanDeactivateGuard
   ],
   bootstrap: [AppComponent]

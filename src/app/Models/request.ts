@@ -1,5 +1,4 @@
-export interface Request{
-  // id: number;
+export interface Request {
   request_id: number;
   request_date: string;
   subject: string;
@@ -10,8 +9,8 @@ export interface Request{
   company_msg: string;
   request_status_id: number;
   request_status_name: string;
-  amana_response_id: number;
-  amana_response_name?: string;
+  response_id: number;
+  major_response_name?: string;
   responce_name?: string;
   company_name?: string
 }

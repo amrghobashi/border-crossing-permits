@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ExcelUploaderService {
-  private baseUrl = 'http://localhost/passApi/public/api';
+  private baseUrl = 'http://localhost/permitsApi/public/api';
 
   constructor(private http: HttpClient) { }
   private API_URL = environment.API_URL;

@@ -4,8 +4,7 @@ import { NotificationService } from 'src/app/home/notification/notification.serv
 
 @Component({
   selector: 'app-marquee',
-  templateUrl: './marquee.component.html',
-  styleUrls: ['./marquee.component.css']
+  templateUrl: './marquee.component.html'
 })
 export class MarqueeComponent implements OnInit {
 

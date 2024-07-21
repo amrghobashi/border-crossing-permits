@@ -1,10 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
-import { map, take } from 'rxjs/operators';
 import { LoginService } from './login/login.service';
-import { RequestService } from './home/request/request.service';
-import { User } from './login/user';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +14,7 @@ export class AppComponent implements OnInit {
   userTypeFlag!: number;
   toolbarFlag = false;
 
-  constructor(private loginService: LoginService, private requestService: RequestService) { 
+  constructor(private loginService: LoginService) { 
     this.subscription = this.loginService.toolbarFlag.subscribe(data => {
       this.toolbarFlag = data;
     })
@@ -26,8 +22,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.autoLogin();
-    // this.subscription = this.loginService.toolbarFlag.subscribe(data => {
-    //   this.toolbarFlag = data;
-    // })
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

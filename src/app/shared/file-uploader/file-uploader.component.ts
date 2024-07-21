@@ -34,8 +34,8 @@ export class FileUploaderComponent implements OnInit {
   fileSrc = '';
   isLoading = true;
 
-  constructor(private uploaderService: FileUploaderService, private _formBuilder: FormBuilder, private sharedService: SharedService, private _snackBar: MatSnackBar,
-    public dialog: MatDialog) {    
+  constructor(private uploaderService: FileUploaderService, private _formBuilder: FormBuilder,
+    private sharedService: SharedService, private _snackBar: MatSnackBar, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -78,38 +78,33 @@ export class FileUploaderComponent implements OnInit {
           if (event.type === HttpEventType.UploadProgress) {
             this.progress = Math.round(100 * event.loaded / event.total);
           } else if (event instanceof HttpResponse) {
-            // this.message = "تم رفع الصورة بنجاح";
             this.uploadDone = true;
             this.fileName = '';
             this.getImages();
-            this.openConfirmMsg("تم رفع الصورة بنجاح");
+            this.openConfirmMsg("image uploaded successfully");
           }
         },
         (err: any) => {
-          // console.log(err);
           this.currentFile = undefined;
           this.progress = 0;
 
           if (err.error && err.error.message) {
             this.uploadDone = false;
-            this.message = "نوع الصورة يجب أن يكون (jpeg, png, jpg), وأن لا يزيد حجم الصورة عن 5MB";
+            this.message = "image format must be (jpeg, png, jpg), and its maximum size not be more than 5MB";
           } else {
-            // console.log("else")
             this.uploadDone = false;
-            this.message = 'لم يتم رفع الصورة, يرجى المحاولة مرة أخرى';
+            this.message = 'image not uploaded, please try again later';
           }
-
         });
     }
-
   }
 
 
   deleteImage(path: string) {
-    let imgPath = {'path': path}
+    let imgPath = { 'path': path }
     this.uploaderService.deleteImage(imgPath).subscribe(() => {
       this.getImages();
-      this.openConfirmMsg("تم حذف الصورة");
+      this.openConfirmMsg("image has been deleted");
     })
   }
 
@@ -121,7 +116,6 @@ export class FileUploaderComponent implements OnInit {
   }
 
   openImage(imgName: string) {
-    // this.dialog.open(DialogComponent);
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '95vw',
       height: '95vh',
@@ -132,4 +126,5 @@ export class FileUploaderComponent implements OnInit {
       }
     });
   }
+
 }

@@ -69,17 +69,13 @@
 
 .matCard{
   margin: 1%;
-  /* border-radius: 8px; */
-  /* height: auto; */
   width: 18%;
-  /* border-radius: 8px; */
   background-color: #ededed;
 }
 
 .imgClass{
   width: -webkit-fill-available;
   height: 15vh;
-  /* width: 14vw; */
 }
 
 @media (max-width: 960px) {

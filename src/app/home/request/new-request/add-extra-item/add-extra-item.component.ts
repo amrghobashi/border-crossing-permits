@@ -1,5 +1,5 @@
-import { Component, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroupDirective, Validators } from '@angular/forms';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ItemType } from 'src/app/Models/itemType';
 import { ItemList } from 'src/app/Models/itemList';
 import { ItemUnit } from 'src/app/Models/itemUnit';
@@ -36,13 +36,13 @@ export class AddExtraItemComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private _formBuilder: FormBuilder, private sharedService: SharedService, private addExtraItemService: AddExtraItemService, private _snackBar: MatSnackBar,
-     public dialog: MatDialog) { }
+  constructor(private _formBuilder: FormBuilder, private sharedService: SharedService, 
+      private addExtraItemService: AddExtraItemService, private _snackBar: MatSnackBar,
+      public dialog: MatDialog) { }
   
   types: ItemType[] = [];
   itemLists: ItemList[] = [];
   units: ItemUnit[] = [];
-  // itemSelected!: RequestItem;
   displayedColumns: string[] = ['item_name', 'item_unit_name', 'quantity', 'other_details','actions'];
   dataSource = new MatTableDataSource<RequestItem>();
   addUpdateFlag: boolean = true;
@@ -92,36 +92,32 @@ export class AddExtraItemComponent implements OnInit {
     if(this.extraItemsFormGroup.valid) {
       const newItem: RequestItem = this.extraItemsFormGroup.value;
       newItem['request_id'] = this.newRequestNO;
-      // console.log(newItem)
       this.subscription = this.addExtraItemService.addItem(newItem).subscribe(value => {
         this.getItems();
         this.reset();
-        this.openConfirmMsg("تم إضافة الصنف بنجاح");
+        this.openConfirmMsg("uploaded successfully");
       })
     }
   }
 
   updateItem() {
-    // console.log(this.extraItemsFormGroup) 
-    // console.log(this.extraItemsFormGroup.get('quantity')?.value)
     if(this.extraItemsFormGroup.valid && this.extraItemsFormGroup.value['quantity'] != null && this.extraItemsFormGroup.value['item_name'] != "") {
       const updatedItem: RequestItem = this.extraItemsFormGroup.value;
-      this.subscription = this.addExtraItemService.updateItem(updatedItem).subscribe(value => {
+      this.subscription = this.addExtraItemService.updateItem(updatedItem).subscribe(() => {
         this.getItems();
         this.reset();
-        this.openConfirmMsg("تم التعديل بنجاح");
+        this.openConfirmMsg("updated successfully");
         this.addUpdateFlag = true;
       })
     }
   }
 
   deleteRow(item: RequestItem) {
-    // this.dialog.open(DialogComponent);
     this.clickedRows = new Set();
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
       data: {
-        msg: "تأكيد الحذف؟",
+        msg: "confirm delete?",
         type: "delete"
       }
     });
@@ -130,7 +126,7 @@ export class AddExtraItemComponent implements OnInit {
       if(value === 1)
         this.subscription = this.addExtraItemService.deleteItem(item.item_id).subscribe(value => {
           this.getItems();
-          this.openConfirmMsg("تم حذف الصنف");
+          this.openConfirmMsg("item has deleted successfully");
           this.reset();
         })
     })
@@ -138,16 +134,13 @@ export class AddExtraItemComponent implements OnInit {
 
   showErrorMsg(field: string) {
     if(field === 'item_name') {
-      // if(this.extraItemsFormGroup.get('item_list_id')?.hasError('required'))
-        return 'إسم الصنف خانة إجبارية';
+        return 'item name is required';
     }
     else if(field === 'item_unit_id') {
-      // if(this.extraItemsFormGroup.get('pass_id')?.hasError('required'))
-        return 'وحدة القياس خانة إجبارية';
+        return 'measurment unit is required';
     }
     else if(field === 'quantity') {
-      // if(this.extraItemsFormGroup.get('pass_id')?.hasError('required'))
-        return 'الكمية خانة إجبارية';
+        return 'quantity is required';
     }
     else return;
   }
@@ -160,7 +153,6 @@ export class AddExtraItemComponent implements OnInit {
   }
 
   reset() {
-    // this.extraItemsFormGroup.reset();
     this.clickedRows = new Set();
     this.addUpdateFlag = true;
     this.extraItemsFormGroup = this._formBuilder.group({
@@ -170,20 +162,6 @@ export class AddExtraItemComponent implements OnInit {
       other_details: [''],
     });
   }
-  // formFlag: boolean = false;
-
-  // openForm() {
-  //   this.extraItemsFormGroup = this._formBuilder.group({
-  //     item_id: [],
-  //     item_type_id: ['', [Validators.required]],
-  //     item_list_id: ['', [Validators.required]],
-  //     item_unit_id: ['', [Validators.required]],
-  //     quantity: ['', [Validators.required]],
-  //     other_details: [''],
-  //   });
-  //   this.formFlag = !this.formFlag;
-  //   console.log(this.formFlag)
-  // }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

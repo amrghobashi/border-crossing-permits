@@ -22,7 +22,7 @@ export class ToolBarComponent implements OnInit {
   selected = '';
   companyName: string = '';
 
-  constructor(private loginService: LoginService, private notificationService: NotificationService, private companyService: CompanyService,
+  constructor(private loginService: LoginService, private companyService: CompanyService,
     public dialog: MatDialog, private sharedService: SharedService, private _snackBar: MatSnackBar) {
     this.subscription = this.loginService.userTypeFlag.subscribe(data => {
       this.adminFlag = data;
@@ -30,14 +30,7 @@ export class ToolBarComponent implements OnInit {
     this.getCompanyName();
   }
 
-  ngOnInit(): void {
-    // this.subscription = this.notificationService.getNotification().subscribe(value => {
-    //   this.notification = value;
-    //   this.notifName = this.notification.notification_name;
-    //   // this.adminFlag = this.loginService.userTypeFlag
-    // console.log(this.adminFlag)
-    // })
-  }
+  ngOnInit(): void { }
 
   selectedClass(value: string) {
     this.selected = value;
@@ -46,16 +39,12 @@ export class ToolBarComponent implements OnInit {
   getCompanyName() {
     const data: any = localStorage.getItem('userData');
     const userData = JSON.parse(data);
-    // let comp_id = this.loginService.user.subscribe(data=> {
-    //   console.log(data)
-    // })
     this.subscription = this.companyService.getCompanyName(userData.id).subscribe(data => {
       this.companyName = data['company_name'];
     });
   }
 
   openPassModal() {
-    // this.dialog.open(DialogComponent);
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
       height: '400px',
@@ -65,9 +54,6 @@ export class ToolBarComponent implements OnInit {
         type: "pwd"
       }
     });
-    // dialogRef.afterClosed().subscribe(() => {
-    //   this.openConfirmMsg("تم تغيير كلمة المرور بنجاح ");
-    // })
   }
 
   openConfirmMsg(msg: string) {

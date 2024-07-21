@@ -1,11 +1,9 @@
-import {Component, OnInit, OnDestroy, ViewChild, AfterViewInit, ViewEncapsulation} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit, OnDestroy } from '@angular/core';
+import {FormBuilder, FormGroup } from '@angular/forms';
 import { Request } from '../../../Models/request';
 import { map, Observable, Subscription } from 'rxjs';
 import { PendingRequestService } from './pending-request.service';
 import { RequestService } from '../request.service';
-// import { Router } from '@angular/router';
-import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import { StepperOrientation } from '@angular/material/stepper';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -13,8 +11,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 @Component({
   selector: 'app-pending-request',
   templateUrl: './pending-request.component.html',
-  styleUrls: ['./pending-request.component.css'],
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./pending-request.component.css']
 })
 export class PendingRequestComponent implements OnInit, OnDestroy {
 
@@ -36,15 +33,16 @@ export class PendingRequestComponent implements OnInit, OnDestroy {
   chipID: number = 0;
   stepperOrientation: Observable<StepperOrientation>
 
-  constructor(private _formBuilder: FormBuilder, private pendingRequestService: PendingRequestService, private requestService: RequestService,
-    breakpointObserver: BreakpointObserver) {
+  constructor(private _formBuilder: FormBuilder, private pendingRequestService: PendingRequestService,
+    private requestService: RequestService, breakpointObserver: BreakpointObserver) {
     this.fetchreqSubscribe();
-    this.stepperOrientation = breakpointObserver.observe('(min-width: 590px)').pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
+    this.stepperOrientation = breakpointObserver.observe('(min-width: 590px)').pipe(
+      map(({matches}) => (matches ? 'horizontal' : 'vertical')
+    ));
   }
 
   ngOnInit() {
     this.fetchRequest();
-    // this.requestService.activelink.next("pending-requests");
   }
 
   fetchRequest(): Observable<Request[]> {
@@ -53,7 +51,6 @@ export class PendingRequestComponent implements OnInit, OnDestroy {
 
   fetchreqSubscribe() {
     this.subscription = this.fetchRequest().subscribe(data => {
-      // console.log(data)
       this.paginationLength = data.length;
       this.requestsArray = this.requestsArrayCopy = data;
       this.isLoading = false;
@@ -61,17 +58,12 @@ export class PendingRequestComponent implements OnInit, OnDestroy {
   }
 
   seeDetails(reqId:number) {
-    // this.requestService.detailId.next(reqId);
     this.detailId = reqId;
     this.requestService.isDetail.next(true);
-    // this.requestService.detailStatus.next(true);
     this.getStatus();
   }
 
   getStatus() {
-    // this.requestService.detailId.subscribe(id => {
-    //   this.detailId = id;
-    // })
     this.subscription = this.requestService.isDetail.subscribe(data => {
       this.detailStatus = data;
     })
@@ -85,10 +77,14 @@ export class PendingRequestComponent implements OnInit, OnDestroy {
   searchRequest(id: number) {
     let strID = id.toString();
     if(this.chipID == 0) {
-      this.requestsArray = this.requestsArrayCopy.filter(requests => requests.request_id.toString().startsWith(strID));
+      this.requestsArray = this.requestsArrayCopy.filter(
+        requests => requests.request_id.toString().startsWith(strID)
+      );
     }
     else{
-      this.requestsArray = this.requestsArrayCopy.filter(requests => requests.request_status_id === this.chipID && requests.request_id.toString().startsWith(strID));
+      this.requestsArray = this.requestsArrayCopy.filter(
+        requests => requests.request_status_id === this.chipID && requests.request_id.toString().startsWith(strID)
+      );
     }
     this.paginationLength = this.requestsArray.length;
   }

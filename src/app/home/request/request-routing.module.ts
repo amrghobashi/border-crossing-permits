@@ -8,8 +8,6 @@ import { PendingRequestComponent } from './pending-request/pending-request.compo
 import { RequestComponent } from './request.component';
 
 const requestRoutes: Routes = [
-    // { path: '', redirectTo: 'requests', pathMatch: 'full'},
-    // { path: 'requests', redirectTo: 'requests/pending-requests', pathMatch: 'full'},
     { path: '', component: RequestComponent, canActivate:[AuthGuard],
         canActivateChild:[AuthGuard],
         children: [
@@ -21,7 +19,6 @@ const requestRoutes: Routes = [
         { path: '**', redirectTo: 'pending-requests', pathMatch: 'full'},
         ]
     },
-    // { path: 'requests', redirectTo: 'pending-requests', pathMatch: 'full'},
 
   ];
 

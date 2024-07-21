@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
 import { CompletedRequestService } from './completed-request.service';
 import { Request } from '../../../Models/request';
 import { Observable, Subscription } from 'rxjs';
@@ -35,7 +35,6 @@ export class CompletedRequestComponent implements OnInit, OnDestroy {
 
   fetchreqSubscribe() {
     this.subscription = this.fetchRequests().subscribe(data => {
-      // console.log(data)
       this.paginationLength = data.length;
       this.requestsArray = this.requestsArrayCopy = data;
       this.isLoading = false;
@@ -53,23 +52,18 @@ export class CompletedRequestComponent implements OnInit, OnDestroy {
       this.requestsArray = this.requestsArrayCopy.filter(requests => requests.request_id.toString().startsWith(strID));
     }
     else{
-      this.requestsArray = this.requestsArrayCopy.filter(requests => requests.amana_response_id === this.chipID && requests.request_id.toString().startsWith(strID));
+      this.requestsArray = this.requestsArrayCopy.filter(requests => requests.response_id === this.chipID && requests.request_id.toString().startsWith(strID));
     }
     this.paginationLength = this.requestsArray.length;
   }
   
   seeDetails(reqId:number) {
-    // this.requestService.detailId.next(reqId);
     this.detailId = reqId;
     this.requestService.isDetail.next(true);
-    // this.requestService.detailStatus.next(true);
     this.getStatus();
   }
 
   getStatus() {
-    // this.requestService.detailId.subscribe(id => {
-    //   this.detailId = id;
-    // })
     this.subscription = this.requestService.isDetail.subscribe(data => {
       this.detailStatus = data;
     })
@@ -82,7 +76,7 @@ export class CompletedRequestComponent implements OnInit, OnDestroy {
       this.requestsArray = this.requestsArrayCopy;
     }
     else{
-      this.requestsArray = this.requestsArrayCopy.filter(requests => requests.amana_response_id === this.chipID)
+      this.requestsArray = this.requestsArrayCopy.filter(requests => requests.response_id === this.chipID)
     }
     this.paginationLength = this.requestsArray.length;
   }
@@ -94,7 +88,7 @@ export class CompletedRequestComponent implements OnInit, OnDestroy {
       this.requestsArray = this.requestsArrayCopy;
     }
     else{
-      this.requestsArray = this.requestsArrayCopy.filter(requests => requests.amana_response_id === this.chipID)
+      this.requestsArray = this.requestsArrayCopy.filter(requests => requests.response_id === this.chipID)
     }
     this.paginationLength = this.requestsArray.length;
   }

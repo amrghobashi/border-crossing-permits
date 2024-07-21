@@ -2,9 +2,10 @@
     <div style="text-align: center; ">
         <form [formGroup]="excelFormGroup" (ngSubmit)="onSubmitFile()" style="margin: auto;">
             <div>
-                <input type="file" (change)="onSelectFile($event)" style="background: #dfdfdf; width: 290px;" accept=".xlsx">
-                <button *ngIf="fileName !== '' " mat-flat-button style="background-color: #2b8b68; color: white; margin-right: 1%;"
-                    type="submit">رفع الملف
+                <input type="file" (change)="onSelectFile($event)" style="background: #dfdfdf; width: 290px;"
+                    accept=".xlsx">
+                <button *ngIf="fileName !== '' " mat-flat-button
+                    style="background-color: #2b8b68; color: white; margin-right: 1%;" type="submit">export file
                     <mat-icon>cloud_upload</mat-icon>
                 </button>
             </div>

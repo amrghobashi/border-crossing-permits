@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/login/login.service';
@@ -14,8 +14,9 @@ import { DialogData } from './dialog-data';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private _formBuilder: FormBuilder,
-    private loginService: LoginService, private sharedService: SharedService, private _snackBar: MatSnackBar) { }
+  constructor(public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private _formBuilder: FormBuilder, private loginService: LoginService, private sharedService: SharedService,
+    private _snackBar: MatSnackBar) { }
 
   subscription: Subscription = new Subscription;
   passwordFormGroup = this._formBuilder.group({
@@ -43,18 +44,21 @@ export class DialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  get oldPasswordInput() { return this.passwordFormGroup.get('oldPassword');}
-  get newPasswordInput1() { return this.passwordFormGroup.get('newPassword');}
-  get newPasswordInput2() { return this.passwordFormGroup.get('confirmNewPassword');}
+  get oldPasswordInput() { return this.passwordFormGroup.get('oldPassword'); }
+  get newPasswordInput1() { return this.passwordFormGroup.get('newPassword'); }
+  get newPasswordInput2() { return this.passwordFormGroup.get('confirmNewPassword'); }
 
   submitNewPassword() {
     this.notIdentical = false;
-    if(this.passwordFormGroup.valid) {
-      if(this.newPasswordInput1?.value == this.newPasswordInput2?.value) {
-        this.loginService.changePassword({'oldPassword': this.oldPasswordInput?.value, 'newPassword': this.newPasswordInput1?.value,
-        'confirmNewPassword': this.newPasswordInput2?.value}).subscribe(data => {
+    if (this.passwordFormGroup.valid) {
+      if (this.newPasswordInput1?.value == this.newPasswordInput2?.value) {
+        this.loginService.changePassword({
+          'oldPassword': this.oldPasswordInput?.value,
+          'newPassword': this.newPasswordInput1?.value,
+          'confirmNewPassword': this.newPasswordInput2?.value
+        }).subscribe(() => {
           this.dialogRef.close();
-          this.openConfirmMsg("تم تغيير كلمة المرور بنجاح ");
+          this.openConfirmMsg("password has been changed successfully");
         })
       }
       else {
@@ -77,11 +81,3 @@ export class DialogComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 }
-
-// if(this.newPasswordInput1?.value == this.newPasswordInput2?.value) {
-//   console.log(this.newPasswordInput1?.value, this.newPasswordInput2?.value)
-// }
-// else {
-//   this.notIdentical = true;
-//   console.log(this.notIdentical)
-// }

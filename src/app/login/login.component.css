@@ -1,76 +1,83 @@
-body{
-    margin:0px !important;
+body {
+    margin: 0px !important;
     overflow: hidden;
-    
+
 }
-.add-btn{
+
+.add-btn {
     position: fixed;
     right: 25px;
     bottom: 20Px;
 }
 
 /** form **/
-.form-wraper{
+.form-wraper {
     width: 100%;
     height: 100%;
-    background:url('../../assets/Pngtree3.jpg') no-repeat center center fixed;
+    background: url('../../assets/Pngtree3.jpg') no-repeat center center fixed;
     background-size: cover;
     position: relative;
 }
-.form-container{
+
+.form-container {
     width: 25%;
     margin: auto;
     padding-bottom: 24px !important;
     display: block;
-    /* background: rgb(255, 255, 255); */
     position: absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
+
 .card {
     border-radius: 15px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
     background-color: #ffffff;
 }
 
-.form-header{
+.form-header {
     padding: 24px 0;
 }
-.form-title{
+
+.form-title {
     text-align: center;
     font-weight: 200;
     font-size: 2.5em;
 }
-.main-lock-icon{
+
+.main-lock-icon {
     width: 30%;
     margin: 5px auto;
     display: block;
 }
-.login-lock-icon{
+
+.login-lock-icon {
     width: 83%;
     margin: 5px auto;
     display: block;
 }
-.form-body{
+
+.form-body {
     padding: 0 24px;
 }
+
 .justifier {
     width: 10%;
     font-size: 1.2em;
     display: contents !important;
 }
-/* .mat-form-field-appearance-legacy .mat-form-field-infix {
-    display: contents !important;
-} */
-.form-input{
+
+.form-input {
     margin-top: 24px;
 }
-.form-footer{
+
+.form-footer {
     padding: 24px;
 }
-.btn{
+
+.btn {
     display: block;
     width: 100%;
     padding: 5% !important;
@@ -79,165 +86,80 @@ body{
     margin-top: 18px;
     background-color: #e7e1e1;
 }
-.custom-btn{
+
+.custom-btn {
     margin-bottom: 15px;
     background: #2b8b68;
     color: #fff;
 }
-.txt{
+
+.txt {
     text-align: center;
     color: #333;
     margin: 10px auto !important;
     font-size: 1.5em;
     font-weight: 200;
 }
-a{
+
+a {
     text-decoration: none;
     color: rgb(42, 125, 219);
 }
-/*
-  ##Device = Desktops
-  ##Screen = 1281px to higher resolution desktops
-*/
+
 @media (min-width: 1281px) {
-    .form-container{
+    .form-container {
         width: 20%;
         margin: auto;
         padding-bottom: 24px !important;
         display: block;
-        /* background: rgb(253, 253, 253); */
     }
-    /* .btn{
-        font-size: 1em;
-    } */
-    /* .form-wraper{
-        width: 100%;
-        height: 100%;
-        background:url('../../assets/10.jpg') no-repeat center center fixed;
-        background-size: contain;
-        position: relative;
-    } */
-  } 
-  
-  /* 
-    ##Device = Laptops, Desktops
-    ##Screen = B/w 1025px to 1280px
- */
-  
-  @media (min-width: 1025px) and (max-width: 1280px) {
+}
 
-    .form-container{
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+    .form-container {
         width: 25%;
         margin: auto;
         padding-bottom: 24px !important;
         display: block;
-        /* background: rgb(253, 253, 253); */
     }
-    /* .btn{
-        font-size: 1em;
-    } */
-    /* .form-wraper{
-        width: 100%;
-        height: 100%;
-        background:url('../../assets/10.jpg') no-repeat center center fixed;
-        background-size: contain;
-        position: relative;
-    } */
-  } 
-  
-  /* 
-    ##Device = Tablets, Ipads (portrait)
-    ##Screen = B/w 768px to 1024px
-  */
-  
-  @media (min-width: 768px) and (max-width: 1024px) {
-    .form-container{
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .form-container {
         width: 35%;
         margin: auto;
         padding-bottom: 24px !important;
         display: block;
-        /* background: rgb(253, 253, 253); */
     }
-    /* .btn{
-        font-size: 1em;
-    } */
-    /* .form-wraper{
-        width: 100%;
-        height: 100%;
-        background:url('../../assets/10.jpg') no-repeat center center fixed;
-        background-size: contain;
-        position: relative;
-    } */
-  }
-  
-  /* 
-    ##Device = Tablets, Ipads (landscape)
-    ##Screen = B/w 768px to 1024px
- */
-  
-  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
 
-  } 
-  
-  /* 
-    ##Device = Low Resolution Tablets, Mobiles (Landscape)
-    ##Screen = B/w 481px to 767px
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
 
-   */
-  @media (min-width: 481px) and (max-width: 767px) {
-    .form-container{
+@media (min-width: 481px) and (max-width: 767px) {
+    .form-container {
         width: 50%;
         margin: auto;
         padding-bottom: 24px !important;
         display: block;
-        /* background: rgb(253, 253, 253); */
     }
-    /* .btn{
-        font-size: 1em;
-    } */
-    /* .form-wraper{
-        width: 100%;
-        height: 100%;
-        background:url('../../assets/10.jpg') no-repeat center center fixed;
-        background-size: contain;
-        position: relative;
-    } */
-  } 
-  
-  /* 
-    ##Device = Most of the Smartphones Mobiles (Portrait)
-    ##Screen = B/w 320px to 479px
-  
-  */
-  @media (min-width: 300px) and (max-width: 480px) {
-    .form-container{
+}
+
+@media (min-width: 300px) and (max-width: 480px) {
+    .form-container {
         width: 65%;
         margin: auto;
         padding-bottom: 24px !important;
         display: block;
-        /* background: rgb(253, 253, 253); */
     }
-    /* .btn{
-        font-size: 1em;
-    } */
-    /* .form-wraper{
-        width: 100%;
-        height: 100%;
-        background:url('../../assets/10.jpg') no-repeat center center fixed;
-        background-size: contain;
-        position: relative;
-    } */
-  }
+}
 
-  @media (min-width: 1px) and (max-width: 300px) {
-    .form-container{
+@media (min-width: 1px) and (max-width: 300px) {
+    .form-container {
         width: 100%;
         margin: auto;
         padding-bottom: 24px !important;
         display: block;
-        /* background: rgb(253, 253, 253); */
     }
-    /* .btn{
-        font-size: 1em;
-    } */
-  }
+
+}

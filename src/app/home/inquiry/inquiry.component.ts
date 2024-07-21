@@ -6,12 +6,12 @@ import { InquiryService } from './inquiry.service';
 
 @Component({
   selector: 'app-inquiry',
-  templateUrl: './inquiry.component.html',
-  styleUrls: ['./inquiry.component.css']
+  templateUrl: './inquiry.component.html'
 })
 export class InquiryComponent implements OnInit {
 
-  constructor(private _formBuilder: FormBuilder, private requestService: RequestService, private inquiryService: InquiryService) { }
+  constructor(private _formBuilder: FormBuilder, private requestService: RequestService,
+    private inquiryService: InquiryService) { }
 
   subscription: Subscription = new Subscription;
   detailStatus: boolean = false;
@@ -43,12 +43,13 @@ export class InquiryComponent implements OnInit {
   }
 
   getStatus() {
-    // this.requestService.detailId.subscribe(id => {
-    //   this.detailId = id;
-    // })
     this.subscription = this.requestService.isDetail.subscribe(data => {
       this.detailStatus = data;
     })
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

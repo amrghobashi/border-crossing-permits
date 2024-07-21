@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import {Request} from '../../Models/request'
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
@@ -18,8 +18,6 @@ export class RequestService {
   status: boolean = false;
   isDetail = new BehaviorSubject(false);
   redirectFromNew = new BehaviorSubject(false);
-  // activelink = new BehaviorSubject<string>("");
-  // activelink = new Subject<string>();
 
   getRequests() {
     return this.http.get<Request[]>('http://localhost:3000/data');

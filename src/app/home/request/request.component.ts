@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router, RouterStateSnapshot } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from '../../login/login.service';
-import { PendingRequestService } from './pending-request/pending-request.service';
 import { RequestService } from './request.service';
 
 @Component({
@@ -16,10 +15,11 @@ export class RequestComponent implements OnInit, OnDestroy {
   adminFlag!: number;
   reqCount:any;
   subscription: Subscription = new Subscription;
-  tabLinks = [{'path': 'pending-requests', 'label': 'طلبات تحت التنفيذ', 'count': ''},
-  {'path': 'completed-requests', 'label': 'طلبات منتهية', 'count': ''},
-  {'path': 'new-request', 'label': 'طلب جديد', 'count': ''}];
-  // activelink = '';
+  tabLinks = [
+    {'path': 'pending-requests', 'label': 'pending', 'count': ''},
+    {'path': 'completed-requests', 'label': 'finished', 'count': ''},
+    {'path': 'new-request', 'label': 'new request', 'count': ''}
+];
   activelink = this.router.url.replace("/requests/", "");
     
     constructor(private requestService: RequestService, private loginService: LoginService, private router: Router) {}
@@ -38,14 +38,7 @@ export class RequestComponent implements OnInit, OnDestroy {
   }
 
   getStatus() {
-    // this.subscription = this.requestService.detailStatus.subscribe(data =>{
-    //   // console.log(data);
-    //   this.detailStatus = data;
-    //   return this.detailStatus;
-    // }
-    // );
     this.subscription = this.requestService.detailId.subscribe(data =>{
-      // console.log(data);
       this.detailId = data;
       return this.detailId;
     }
@@ -54,7 +47,6 @@ export class RequestComponent implements OnInit, OnDestroy {
 
   reset() {
     this.requestService.detailStatus.next(false);
-    // console.log("reset")
   }
 
   getCount() {
@@ -62,7 +54,6 @@ export class RequestComponent implements OnInit, OnDestroy {
       this.reqCount = value;
       this.tabLinks[0]['count'] = this.reqCount['pending'];
       this.tabLinks[1]['count'] = this.reqCount['completed'];
-      // this.tabLinks[2]['count'] = this.reqCount['new'];
     })
   }
 
@@ -76,10 +67,6 @@ export class RequestComponent implements OnInit, OnDestroy {
           this.activelink = this.router.url.replace("/requests/new-request", "pending-requests");
       });
       }
-      // setTimeout(() => {
-      //   this.requestService.redirectFromNew.next(false)
-      // }, 1000)
-      // this.tabLinks[2]['count'] = this.reqCount['new'];
     })
     this.requestService.redirectFromNew.next(false);
   }

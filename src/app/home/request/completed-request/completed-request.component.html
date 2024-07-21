@@ -1,113 +1,79 @@
-
 <div *ngIf="!isLoading else loading">
-    <!-- <input matInput type="number" (keyup)="onKey($event)" placeholder="بحث برقم الطلب" (paste)="$event.preventDefault()"> -->
-    <!-- <div style="text-align: center; font-size: x-large;"> -->
-        <br>
-        <div *ngIf="!detailStatus">
-            <div dir="rtl" style="text-align: center;">
-                <mat-form-field class="example-full-width" appearance="fill" >
-                    <input type="number" matInput placeholder="بحث برقم الطلب" (keyup)="onKey($event)">
-                    <!-- <button *ngIf="searchValue" matSuffix mat-icon-button (click)="searchValue=0">
+    <br>
+    <div *ngIf="!detailStatus">
+        <div dir="rtl" style="text-align: center;">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input type="number" matInput placeholder="search with request number" (keyup)="onKey($event)">
+            </mat-form-field>
+        </div>
+        <div style="align-items: center; display: flex;">
+            <div style="margin:0 auto; text-align: center;">
+                <mat-button-toggle-group appearance="legacy" name="fontStyle" class="toggleButton">
+                    <mat-button-toggle (click)="toggleClick(1)" style="color: #545454;">
+                        <mat-icon>done_all</mat-icon>
+                        accepted
+                    </mat-button-toggle>
+                    <mat-button-toggle (click)="toggleClick(4)" style="color: #545454;">
+                        <mat-icon>playlist_add_check</mat-icon>
+                        partial accepted
+                    </mat-button-toggle>
+                    <mat-button-toggle (click)="toggleClick(2)" style="color: #545454;">
                         <mat-icon>close</mat-icon>
-                    </button> -->
-                </mat-form-field>
-            </div>
-            <!-- <div style="align-items: center; display: flex;">
-                <div style="margin:0 auto; text-align: center;">
-                    <mat-chip-list >
-                        <mat-chip (click)="chipClick(1)" style="background-color:#6dbd28; color: white;">
-                            موافقة 
-                        </mat-chip>
-                        <mat-chip (click)="chipClick(4)" style="background-color:#1ea5e4; color: white;">
-                            موافقة جزئية
-                        </mat-chip>
-                        <mat-chip (click)="chipClick(2)" style="background-color:#b01818bf; color: white;">
-                            مرفوضة 
-                        </mat-chip>
-                        <mat-chip (click)="chipClick(0)">
-                            الكل
-                        </mat-chip>
-                    </mat-chip-list>
-                </div>
-            </div>
-<br> -->
-            <div style="align-items: center; display: flex;">
-                <div style="margin:0 auto; text-align: center;">
-                    <mat-button-toggle-group appearance="legacy" name="fontStyle" class="toggleButton">
-                        <mat-button-toggle (click)="toggleClick(1)" style="color: #545454;">
-                            <mat-icon>done_all</mat-icon>
-                                <!-- <span matBadge="30" matBadgeColor="warn"></span> -->
-                            موافقة
-                        </mat-button-toggle>
-                        <mat-button-toggle (click)="toggleClick(4)" style="color: #545454;">
-                            <mat-icon>playlist_add_check</mat-icon>
-                            موافقة جزئية
-                        </mat-button-toggle>
-                        <mat-button-toggle (click)="toggleClick(2)" style="color: #545454;">
-                            <mat-icon>close</mat-icon>
-                            مرفوضة 
-                        </mat-button-toggle>
-                        <mat-button-toggle (click)="toggleClick(0)" style="color: #545454;">
-                            الكل
-                        </mat-button-toggle>
-                    </mat-button-toggle-group>
-                </div>
+                        rejected
+                    </mat-button-toggle>
+                    <mat-button-toggle (click)="toggleClick(0)" style="color: #545454;">
+                        all
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
             </div>
         </div>
-        <br>
-        
-
-    <!-- </div> -->
-    <div *ngIf="!detailStatus else detail" class="containerCard"> 
-        <mat-card dir="rtl" class="matCard"
-            *ngFor="let request of requestsArray |slice:((paginator.pageIndex)*paginator.pageSize):((paginator.pageIndex+1)*paginator.pageSize)"
-            >
-                <mat-card-title style="font-size: 1.3rem;">طلب رقم : {{ request.request_id }}</mat-card-title>
-                <br>
-                <p *ngIf="request.company_msg" class="subjectFont"><b class="headerFont">رسالة الرد : </b>{{ request.company_msg | slice:0:80 }}
-                    <a *ngIf="request.company_msg.length >=80">...</a>
+    </div>
+    <br>
+    <div *ngIf="!detailStatus else detail" class="containerCard">
+        <mat-card dir="rtl" class="matCard" *ngFor="let request of requestsArray 
+                |slice:((paginator.pageIndex)*paginator.pageSize):((paginator.pageIndex+1)*paginator.pageSize)">
+            <mat-card-title style="font-size: 1.3rem;">request no. : {{ request.request_id }}</mat-card-title>
+            <br>
+            <p *ngIf="request.company_msg" class="subjectFont"><b class="headerFont">reply message : </b>{{
+                request.company_msg | slice:0:80 }}
+                <a *ngIf="request.company_msg.length >=80">...</a>
+            </p>
+            <mat-card-content>
+                <p *ngIf="request.subject" class="subjectFont"><b class="headerFont">subject : </b>
+                    {{ request.subject | slice:0:80 }}
+                    <a *ngIf="request.subject.length >=80">...</a>
                 </p>
-                <mat-card-content>
-                    <p *ngIf="request.subject" class="subjectFont"><b class="headerFont">الموضوع : </b>{{ request.subject | slice:0:80 }}
-                        <a *ngIf="request.subject.length >=80">...</a>
-                    </p>
-                    <p *ngIf="request.pass_name" class="subjectFont"><b class="headerFont">المعبر : </b>{{ request.pass_name }}</p>
-                    <p *ngIf="request.request_date" class="subjectFont"><b class="headerFont">بتاريخ : </b>{{ request.request_date | date: 'yyyy/MM/dd'}}</p>
-                    <button mat-raised-button disabled
-                        [ngClass]="{'acceptClass': request.amana_response_id === 1,
-                        'refusedClass': request.amana_response_id === 2,
-                        'partialAcceptClass': request.amana_response_id === 4}">
-                        {{request.amana_response_name}}
-                        <mat-icon *ngIf="request.amana_response_id === 1">done_all</mat-icon>
-                        <mat-icon *ngIf="request.amana_response_id === 2">close</mat-icon>
-                        <mat-icon *ngIf="request.amana_response_id === 4">playlist_add_check</mat-icon>
-                    </button>
-                    
-
-                </mat-card-content>
-                <!-- <mat-card-actions>
-                    <button mat-button>التفاصيل...</button>
-                </mat-card-actions> -->
-                <mat-card-footer dir="ltr" style="margin: 0px;">
-                    <button (click)="seeDetails(request.request_id)" mat-raised-button style="font-size: large; background-color: #e3e3e3;">
-                        <mat-icon>dehaze</mat-icon>
-                        التفاصيل
-                    </button>
-                </mat-card-footer>
-            </mat-card>
-        </div>
-    <mat-paginator #paginator [length]="paginationLength"
-        [pageSize]="pageSize"
-        [pageSizeOptions]="[5, 10, 15, 20]"
+                <p *ngIf="request.pass_name" class="subjectFont"><b class="headerFont">gate : </b>
+                    {{ request.pass_name }}
+                </p>
+                <p *ngIf="request.request_date" class="subjectFont"><b class="headerFont">date : </b>
+                    {{ request.request_date | date: 'yyyy/MM/dd'}}
+                </p>
+                <button mat-raised-button disabled [ngClass]="{'acceptClass': request.response_id === 1,
+                        'refusedClass': request.response_id === 2,
+                        'partialAcceptClass': request.response_id === 4}">
+                    {{request.major_response_name}}
+                    <mat-icon *ngIf="request.response_id === 1">done_all</mat-icon>
+                    <mat-icon *ngIf="request.response_id === 2">close</mat-icon>
+                    <mat-icon *ngIf="request.response_id === 4">playlist_add_check</mat-icon>
+                </button>
+            </mat-card-content>
+            <mat-card-footer dir="ltr" style="margin: 0px;">
+                <button (click)="seeDetails(request.request_id)" mat-raised-button
+                    style="font-size: large; background-color: #e3e3e3;">
+                    <mat-icon>dehaze</mat-icon>
+                    more details
+                </button>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+    <mat-paginator #paginator [length]="paginationLength" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 15, 20]"
         (page)="pageEvent = $event">
     </mat-paginator>
 </div>
-
-
 <ng-template #detail>
     <app-request-detail [requestNo]="detailId" [isCompletedReq]="true"></app-request-detail>
 </ng-template>
-
 <ng-template #loading>
     <mat-spinner style="margin-inline: auto;"></mat-spinner>
 </ng-template>

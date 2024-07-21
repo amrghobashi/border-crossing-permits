@@ -8,7 +8,6 @@ import { LoginComponent } from './login.component';
     declarations: [],
     imports: [FormsModule, CommonModule,
         RouterModule.forChild([
-        // { path: '', redirectTo: 'login', pathMatch: 'full', component: LoginComponent },
         { path: '', component: LoginComponent }
     ])
     ]

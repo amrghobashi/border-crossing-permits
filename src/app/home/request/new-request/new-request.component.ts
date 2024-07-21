@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { exhaustMap, map, Observable, Subscription } from 'rxjs';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import { map, Observable, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmMessageComponent } from 'src/app/shared/confirm-message/confirm-message.component';
 import { Pass } from 'src/app/Models/passes';
@@ -55,11 +55,16 @@ export class NewRequestComponent implements OnInit, OnDestroy {
     if(index == 2 && this.stepperIndex2 == false) this.stepperIndex2 = true;
   }
 
-  constructor(private _formBuilder: FormBuilder, private newRequestService: NewRequestService, private _snackBar: MatSnackBar, private sharedService: SharedService,
-    private requestService: RequestService, private router: Router, breakpointObserver: BreakpointObserver) {
+  constructor(private _formBuilder: FormBuilder, private newRequestService: NewRequestService,
+    private _snackBar: MatSnackBar, private sharedService: SharedService,
+    private requestService: RequestService, private router: Router,
+    breakpointObserver: BreakpointObserver) {
       this.getNotCompleted();
-      this.stepperOrientation = breakpointObserver.observe('(min-width: 900px)').pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
+      this.stepperOrientation = breakpointObserver.observe('(min-width: 900px)').pipe(
+        map(({matches}) => (matches ? 'horizontal' : 'vertical')
+      ));
   }
+
   firstFormGroup = this._formBuilder.group({});
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
@@ -67,20 +72,12 @@ export class NewRequestComponent implements OnInit, OnDestroy {
 
   imgFormGroup = this._formBuilder.group({});
 
-
-
   ngOnInit(): void {
     this.getPasses();
-    // this.requestService.activelink.next("new-request");
   }
-
-  onKey(event: Event, value: any) {
-    let searchText = (event.target as HTMLInputElement).value;
-    }
 
   search(value: string) {
     let filter = value.toLowerCase();
-    // console.log(this.passes.filter(option => option.pass_name.toLowerCase().includes(filter)));
     return this.passes.filter(option => option.pass_name.toLowerCase().includes(filter));
   }
 
@@ -114,7 +111,6 @@ export class NewRequestComponent implements OnInit, OnDestroy {
   getPasses() {
     this.subscription = this.newRequestService.getPasses().subscribe(passes => {
       this.passes = passes;
-      // console.log(this.passes);
     })
   }
 
@@ -126,10 +122,8 @@ export class NewRequestComponent implements OnInit, OnDestroy {
         this.newReqStatus = true;
         this.isLoading = false;
         this.newRequestNO = value.request_id;
-        this.openConfirmMsg("تم إضافة الطلب بنجاح");
-        // console.log(value);
+        this.openConfirmMsg("added successfully");
       })
-      // console.log(this.newRequest)
     }
   }
 
@@ -139,9 +133,8 @@ export class NewRequestComponent implements OnInit, OnDestroy {
       this.newRequest.request_id = this.newRequestNO;
       this.isLoading = true;
       this.subscription = this.newRequestService.updateReqeust( this.newRequest).subscribe(value => {
-        // console.log(value);
       this.isLoading = false;
-        this.openConfirmMsg("تم تعديل الطلب بنجاح");
+        this.openConfirmMsg("updated successfully");
       })
     }
   }
@@ -149,22 +142,22 @@ export class NewRequestComponent implements OnInit, OnDestroy {
   showErrorMsg(field: string) {
     if(field === 'subject') {
       if(this.firstFormGroup.get('subject')?.hasError('required'))
-        return 'الموضوع خانة إجبارية';
-      else return 'الموضوع يجب ان لا يقل عن 10 احرف وان لا يزيد عن 450 حرف.';
+        return 'subject is required';
+      else return 'subject must be at least 10 characters.';
     }
     else if(field === 'address') {
       if(this.firstFormGroup.get('address')?.hasError('required'))
-        return 'العنوان خانة إجبارية';
-      else return 'العنوان يجب ان لا يقل عن 10 احرف وان لا يزيد عن 450 حرف.';
+        return 'address is required';
+      else return 'address must be at least 10 characters.';
     }
     else if(field === 'pass_id') {
       if(this.firstFormGroup.get('pass_id')?.hasError('required'))
-        return 'المعبر خانة إجبارية';
+        return 'gate is required';
       else return;
     }
     else if(field === 'r_notes') {
       if(this.firstFormGroup.get('pass_id')?.hasError('required'))
-        return 'الملاحظات يجب ان لا تزيد عن 250 حرف.';
+         return 'notes must be not exceeded than 250 characters.';
       else return;
     }
     else return;
@@ -179,8 +172,8 @@ export class NewRequestComponent implements OnInit, OnDestroy {
 
   countReqeustItems(id: number) {
     this.subscription = this.newRequestService.checkRequest(id).subscribe(data => {
-      if(data > 0) {
-        this.sendRequest(id);
+      if(data) {
+        this.sendRequest();
       }
       else {
         this.noItemsMsg = true;
@@ -191,20 +184,13 @@ export class NewRequestComponent implements OnInit, OnDestroy {
     })
   }
 
-  sendRequest(id: number) {
-    // this._snackBar.openFromComponent(ConfirmMessageComponent, {
-    //   duration: 4000,
-    // });
-    // setTimeout(() => {
-    //   this.router.navigateByUrl('requests/pending-requests');
-    // }, 1000)
+  sendRequest() {
     setTimeout(() => {
       this.requestService.redirectFromNew.next(true);
     }, 3500)
     this.subscription = this.newRequestService.sendReqeust(this.newRequest).subscribe(() => {
       this.requestSent = true;
-      this.sharedService.msg.next(".تم إرسال الطلب, سيتم تحويلك الان للصفحة الرئيسية");
-      // this.sharedService.msg.next(".تم إرسال الطلب, يمكنك متابعة الطلب في طلبات تحت التنفيذ");
+      this.sharedService.msg.next("request has been sent, you will be directed now to the main page");
       this._snackBar.openFromComponent(ConfirmMessageComponent, {
         duration: 4000,
       });
@@ -216,10 +202,6 @@ export class NewRequestComponent implements OnInit, OnDestroy {
 
   onSelectFile(fileInputEvent: any) {
     this.imgSelected = fileInputEvent.target.files[0];
-    // console.log(fileInputEvent.target.files[0]);
-    // this.imgSelected = fileInputEvent.target.files[0];
-    // console.log(this.imgSelected)
-
   }
 
   onSubmitFile() {
@@ -228,13 +210,7 @@ export class NewRequestComponent implements OnInit, OnDestroy {
     imgForm.append("imgForm", JSON.stringify(object));
     imgForm.append('testInput', 'test');
     imgForm.append('testimg', this.imgSelected, this.imgSelected.name);
-    // imgForm.append('testInput','bahaa');
-    // console.log(imgForm.get('testInput'));
-    // console.log(imgForm.get('testimg'));
-    this.newRequestService.addImg(imgForm).subscribe(data => {
-      // console.log("resdata")
-      // console.log(data);
-    })
+    this.newRequestService.addImg(imgForm).subscribe();
   }
 
   ngOnDestroy(): void {
