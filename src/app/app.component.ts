@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  title = 'passComp';
+  title = 'RequestPermit';
   subscription: Subscription = new Subscription;
   userTypeFlag!: number;
   toolbarFlag = false;

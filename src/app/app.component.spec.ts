@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'passComp'`, () => {
+  it(`should have as title 'RequestPermit'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('passComp');
+    expect(app.title).toEqual('RequestPermit');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('passComp app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('RequestPermit app is running!');
   });
 });

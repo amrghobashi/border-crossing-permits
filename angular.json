@@ -6,7 +6,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "passComp": {
+        "RequestPermit": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:application": {
@@ -69,10 +69,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "passComp:build:production"
+                            "browserTarget": "RequestPermit:build:production"
                         },
                         "development": {
-                            "browserTarget": "passComp:build:development"
+                            "browserTarget": "RequestPermit:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "passComp:build"
+                        "browserTarget": "RequestPermit:build"
                     }
                 },
                 "test": {
@@ -104,5 +104,5 @@
             }
         }
     },
-    "defaultProject": "passComp"
+    "defaultProject": "RequestPermit"
 }
