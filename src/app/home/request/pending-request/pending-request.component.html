@@ -31,7 +31,7 @@
             <mat-card-title style="font-size: 1.3rem;">request number : {{ request.request_id }}</mat-card-title>
             <br>
             <mat-card-content>
-                <p class="subjectFont"><b class="headerFont">gate :</b>{{ request.pass_name }}</p>
+                <p class="subjectFont"><b class="headerFont">gate :</b>{{ request.gate_name }}</p>
                 <p class="subjectFont"><b class="headerFont">subject :</b> {{ request.subject | slice:0:300 }}
                     <a *ngIf="request.subject.length >=300">...</a>
                 </p>

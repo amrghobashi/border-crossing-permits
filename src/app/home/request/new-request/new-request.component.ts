@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import { map, Observable, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmMessageComponent } from 'src/app/shared/confirm-message/confirm-message.component';
-import { Pass } from 'src/app/Models/passes';
+import { Gate } from 'src/app/Models/gates';
 import { NewRequestService } from './new-request.service';
 import { Request } from '../../../Models/request';
 import { SharedService } from 'src/app/shared/shared.service';
@@ -21,7 +21,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 export class NewRequestComponent implements OnInit, OnDestroy {
 
   subscription: Subscription = new Subscription;
-  passes: Pass[] = [];
+  gates: Gate[] = [];
   newReqStatus: boolean = false;
   isLoading: boolean = true;
   newRequest!: Request;
@@ -73,12 +73,12 @@ export class NewRequestComponent implements OnInit, OnDestroy {
   imgFormGroup = this._formBuilder.group({});
 
   ngOnInit(): void {
-    this.getPasses();
+    this.getgates();
   }
 
   search(value: string) {
     let filter = value.toLowerCase();
-    return this.passes.filter(option => option.pass_name.toLowerCase().includes(filter));
+    return this.gates.filter(option => option.gate_name.toLowerCase().includes(filter));
   }
 
   getNotCompleted() {
@@ -91,7 +91,7 @@ export class NewRequestComponent implements OnInit, OnDestroy {
         this.firstFormGroup = this._formBuilder.group({
           subject: [this.newRequest.subject, [Validators.required, Validators.maxLength(450), Validators.minLength(10)]],
           address: [this.newRequest.address, [Validators.required, Validators.maxLength(450), Validators.minLength(10)]],
-          pass_id: [this.newRequest.pass_id, [Validators.required]],
+          gate_id: [this.newRequest.gate_id, [Validators.required]],
           r_notes: [this.newRequest.r_notes, [Validators.maxLength(250)]],
         });
       }
@@ -100,7 +100,7 @@ export class NewRequestComponent implements OnInit, OnDestroy {
         this.firstFormGroup = this._formBuilder.group({
           subject: ['', [Validators.required, Validators.maxLength(450), Validators.minLength(10)]],
           address: ['', [Validators.required, Validators.maxLength(450), Validators.minLength(10)]],
-          pass_id: ['', [Validators.required]],
+          gate_id: ['', [Validators.required]],
           r_notes: ['', [Validators.maxLength(250)]],
         });
         this.isLoading = false;
@@ -108,9 +108,9 @@ export class NewRequestComponent implements OnInit, OnDestroy {
     })
   }
 
-  getPasses() {
-    this.subscription = this.newRequestService.getPasses().subscribe(passes => {
-      this.passes = passes;
+  getgates() {
+    this.subscription = this.newRequestService.getgates().subscribe(gates => {
+      this.gates = gates;
     })
   }
 
@@ -150,13 +150,13 @@ export class NewRequestComponent implements OnInit, OnDestroy {
         return 'address is required';
       else return 'address must be at least 10 characters.';
     }
-    else if(field === 'pass_id') {
-      if(this.firstFormGroup.get('pass_id')?.hasError('required'))
+    else if(field === 'gate_id') {
+      if(this.firstFormGroup.get('gate_id')?.hasError('required'))
         return 'gate is required';
       else return;
     }
     else if(field === 'r_notes') {
-      if(this.firstFormGroup.get('pass_id')?.hasError('required'))
+      if(this.firstFormGroup.get('gate_id')?.hasError('required'))
          return 'notes must be not exceeded than 250 characters.';
       else return;
     }

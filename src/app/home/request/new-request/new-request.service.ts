@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Pass } from '../../../Models/passes';
+import { Gate } from '../../../Models/gates';
 import { Request } from '../../../Models/request';
 
 @Injectable({
@@ -37,7 +37,7 @@ export class NewRequestService {
     return this.http.put<Request>(this.API_URL+'send_request/' +request.request_id, request); 
   }
 
-  getPasses() {
-    return this.http.get<Pass[]>(this.API_URL+'get_passes');
+  getgates() {
+    return this.http.get<Gate[]>(this.API_URL+'get_gates');
   }
 }

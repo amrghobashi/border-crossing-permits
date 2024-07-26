@@ -35,13 +35,13 @@
                 <div>
                     <mat-form-field class="formFieldClass" appearance="fill">
                         <mat-label>gate</mat-label>
-                        <mat-select formControlName="pass_id">
-                            <mat-option *ngFor="let pass of passes" value={{pass.pass_id}}>
-                                {{ pass.pass_name }}
+                        <mat-select formControlName="gate_id">
+                            <mat-option *ngFor="let gate of gates" value={{gate.gate_id}}>
+                                {{ gate.gate_name }}
                             </mat-option>
                         </mat-select>
-                        <mat-error *ngIf="this.firstFormGroup.get('pass_id')?.invalid">
-                            {{ showErrorMsg('pass_id') }}
+                        <mat-error *ngIf="this.firstFormGroup.get('gate_id')?.invalid">
+                            {{ showErrorMsg('gate_id') }}
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field class="formFieldClass" appearance="fill">

@@ -3,8 +3,8 @@ export interface Request {
   request_date: string;
   subject: string;
   address: string;
-  pass_id: string;
-  pass_name: string;
+  gate_id: string;
+  gate_name: string;
   r_notes: string;
   company_msg: string;
   request_status_id: number;
