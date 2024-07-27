@@ -1,7 +1,7 @@
 <div *ngIf="!isLoading else loading">
     <br>
     <div *ngIf="!detailStatus">
-        <div dir="rtl" style="text-align: center;">
+        <div dir="ltr" style="text-align: center;">
             <mat-form-field class="example-full-width" appearance="fill">
                 <input type="number" matInput placeholder="search with request number" (keyup)="onKey($event)">
             </mat-form-field>
@@ -26,7 +26,7 @@
     </div>
     <br>
     <div *ngIf="!detailStatus else detail" class="containerCard">
-        <mat-card dir="rtl" class="matCard" *ngFor="let request of requestsArray 
+        <mat-card dir="ltr" class="matCard" *ngFor="let request of requestsArray 
                 |slice:((paginator.pageIndex)*paginator.pageSize):((paginator.pageIndex+1)*paginator.pageSize)">
             <mat-card-title style="font-size: 1.3rem;">request number : {{ request.request_id }}</mat-card-title>
             <br>

@@ -1,4 +1,4 @@
-<mat-card dir="rtl" class="example-card"
+<mat-card dir="ltr" class="example-card"
     style="margin: auto; border-radius: 8px; width: 70%; height: auto; background-color: #f9f9f9; min-height: 76%;">
     <br>
     <div></div>
@@ -10,7 +10,7 @@
             <mat-label style="font-size: large; margin-right: 1%;">search</mat-label>
             <input matInput (keyup)="searchCompany($event)" #input>
         </mat-form-field>
-        <table *ngIf="!isLoading else loading" style="width: 100%;" dir="rtl" mat-table [dataSource]="dataSource"
+        <table *ngIf="!isLoading else loading" style="width: 100%;" dir="ltr" mat-table [dataSource]="dataSource"
             class="mat-elevation-z8" matSort>
             <ng-container matColumnDef="company_name">
                 <th style="width: 45%;" mat-header-cell *matHeaderCellDef mat-sort-header class="headerStyle">company name</th>

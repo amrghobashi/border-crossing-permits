@@ -1,4 +1,4 @@
-<mat-stepper linear #stepper dir="rtl">
+<mat-stepper linear #stepper dir="ltr">
     <mat-step [editable]="false" [completed]="selectedIndex > 0">
         <ng-template matStepLabel>export requests file</ng-template>
         <div *ngIf="!isLoading else loading" style="text-align: center; font-size: x-large;">

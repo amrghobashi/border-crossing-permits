@@ -15,7 +15,7 @@
 
 <div *ngIf="!data.image && data.type == 'pwd'">
     <form (ngSubmit)="submitNewPassword()" [formGroup]="passwordFormGroup" #formDirective="ngForm" class="example-form">
-        <div class="form-body" dir="rtl">
+        <div class="form-body" dir="ltr">
             <mat-form-field style="width: 100%;">
                 <input matInput placeholder="old password " formControlName="oldPassword"
                     [type]="hide1 ? 'password' : 'text'" required class="form-input"

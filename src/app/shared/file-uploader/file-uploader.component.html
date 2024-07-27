@@ -24,7 +24,7 @@
 </div>
 <div *ngIf="images !== 0 else noImgMsg">
   <div *ngIf="!isLoading else loading" class="containerCard">
-    <mat-card *ngFor="let image of images" dir="rtl" class="matCard">
+    <mat-card *ngFor="let image of images" dir="ltr" class="matCard">
       <mat-card-content>
         <img mat-card-image class="imgClass" style="cursor: zoom-in;"
           (click)="openImage(fileSrc + '/' + image.image_name)" [src]="fileSrc + '/' + image.image_name"

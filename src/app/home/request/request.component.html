@@ -1,5 +1,5 @@
 <mat-card class="main-card">
-    <nav mat-tab-nav-bar ngClass = "tabs" (selectedTabChange)="reset()" dir="rtl" dynamicHeight 
+    <nav mat-tab-nav-bar ngClass = "tabs" (selectedTabChange)="reset()" dir="ltr" dynamicHeight 
         style="font-size: large;">
        <a mat-tab-link *ngFor="let link of tabLinks"
             routerLink="{{ link.path }}"
